@@ -16,8 +16,8 @@ entity mem is
 	port 
 	(
 		clk		: in std_logic;
-		addr	        : in std_logic_vector((ADDR_WIDTH-1) downto 0);
-		data	        : in std_logic_vector((DATA_WIDTH-1) downto 0);
+		addr	: in std_logic_vector((ADDR_WIDTH-1) downto 0);
+		data	: in std_logic_vector((DATA_WIDTH-1) downto 0);
 		we		: in std_logic := '1';
 		q		: out std_logic_vector((DATA_WIDTH -1) downto 0)
 	);

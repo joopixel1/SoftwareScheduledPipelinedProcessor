@@ -12,3 +12,9 @@ constants, etc.) in this file.
 A top level file, TopLevel/MIPS\_processor is included. Please be mindful
 of signals in this processor that are required for the toolflow.
 
+### TODO
+- Add Exception Handler using Cause Register.
+- Add fast multiplication unit.
+- Add fast division unit.
+- 
+
