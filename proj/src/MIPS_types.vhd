@@ -39,6 +39,11 @@ package MIPS_types is
     pc_sel          : std_logic_vector(1 downto 0);
   end record control_t;
 
+  type wb_control_t is record
+    reg_wr          : std_logic;
+    reg_wr_sel      : std_logic_vector(1 downto 0);
+  end record control_t;
+
 end package MIPS_types;
 
 package body MIPS_types is

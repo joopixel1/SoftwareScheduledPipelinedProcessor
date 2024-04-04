@@ -55,6 +55,7 @@ architecture structure of MIPS_Processor is
     signal s_Zero         : std_logic; -- 5
     signal s_Reg1Val      : std_logic_vector(N-1 downto 0); -- 6
 
+
     -- Required halt signal -- for simulation
     signal s_Halt         : std_logic;  -- TODO: this signal indicates to the simulation that intended program execution has completed. (Opcode: 01 0100)
 
@@ -76,6 +77,14 @@ architecture structure of MIPS_Processor is
     signal s_IMemAddr     : std_logic_vector(N-1 downto 0); -- Do not assign this signal, assign to s_NextInstAddr instead
     signal s_NextInstAddr : std_logic_vector(N-1 downto 0); -- TODO: use this signal as your intended final instruction memory address input.
     signal s_Inst         : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the instruction signal 
+
+    -- Temp signals for execute stage
+    signal wb_WBSignal      : wb_control_t;
+    signal wb_DMEMOut       : std_logic_vector(N-1 downto 0);
+    signal wb_ALUOut        : std_logic_vector(N-1 downto 0);
+    signal wb_PCInc         : std_logic_vector(N-1 downto 0);
+    signal wb_PartialMemOut : std_logic_vector(N-1 downto 0);
+
 
     component fetch is
         port(
@@ -147,6 +156,7 @@ architecture structure of MIPS_Processor is
 
 begin
 
+    -------------- IF STAGE -------------------------
     IFetch: fetch
     port map(
         iCLK            => iCLK, 
@@ -170,6 +180,11 @@ begin
         q       => s_Inst
     );
 
+    -------------- IF/ID STAGE -----------------------------
+
+
+    --------------- ID STAGE ---------------------------
+
     ControlUnit: control_unit
     port map(
         i_Opc          => s_Inst(31 downto 26),
@@ -178,15 +193,9 @@ begin
         o_ctrl_Q       => s_ControlUnit,
         o_alu_Q        => s_ALUControlUnit
     );
-    
-    DMem: mem
-    port map(
-        clk  => iCLK,
-        addr => s_DMemAddr(11 downto 2),
-        data => s_DMemData,
-        we   => s_ControlUnit.mem_wr,
-        q    => s_DMemOut
-    );
+
+
+    --------------- ID/EX STAGE --------------------------
 
     IExecute: execute
     port map(
@@ -214,6 +223,33 @@ begin
         iDMemData       => s_DMemData,    
         iDMemOut        => s_DMemOut
     );
+
+    ------------------ MEM STAGE --------------------------
+    
+    DMem: mem
+    port map(
+        clk  => iCLK,
+        addr => s_DMemAddr(11 downto 2),
+        data => s_DMemData,
+        we   => s_ControlUnit.mem_wr,
+        q    => s_DMemOut
+    );
+
+    ---------------- MEM/WB STAGE -------------------------
+
+
+    ----------------- WB STAGE ----------------------------
+
+    with wb_control_t.reg_wr_sel select
+        s_RegWrData <= wb_ALUOut when "00",
+        wb_DMemOut when "01",
+        wb_PCInc when "10",
+        wb_PartialMemOut when others; 
+
+    s_RegWr <= wb_control_t.reg_wr;
+    s_RegWrAddr <= wb_RegWrAddr;
+
+    ------------------ HALT -------------------------------
 
     with s_Inst(31 downto 26) select 
         s_Halt <= '1' when "010100",
