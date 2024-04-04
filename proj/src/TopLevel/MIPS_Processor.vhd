@@ -43,46 +43,86 @@ end  MIPS_Processor;
 
 architecture structure of MIPS_Processor is
 
-    -- Required fetch signals
-    -- signal s_Inst           : std_logic_vector(N-1 downto 0); -- 1
-    signal s_PCInc          : std_logic_vector(N-1 downto 0); -- 2
-
-    -- Required Control Signals
-    signal s_ControlUnit    : control_t; -- 3
-    signal s_ALUControlUnit : alu_control_t; -- 4
-
-    -- Required execute signals
-    signal s_Zero         : std_logic; -- 5
-    signal s_Reg1Val      : std_logic_vector(N-1 downto 0); -- 6
-
-
     -- Required halt signal -- for simulation
-    signal s_Halt         : std_logic;  -- TODO: this signal indicates to the simulation that intended program execution has completed. (Opcode: 01 0100)
+    signal s_Halt           : std_logic;  -- TODO: this signal indicates to the simulation that intended program execution has completed. (Opcode: 01 0100)
 
     -- Required overflow signal -- for overflow exception detection
-    signal s_Ovfl         : std_logic;  -- : this signal indicates an overflow exception would have been initiated
+    signal s_Ovfl           : std_logic;  -- : this signal indicates an overflow exception would have been initiated
 
     -- Required data memory signals
-    signal s_DMemWr       : std_logic; -- TODO: use this signal as the final active high data memory write enable signal
-    signal s_DMemAddr     : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory address input
-    signal s_DMemData     : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
-    signal s_DMemOut      : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the data memory output
+    signal s_DMemWr         : std_logic; -- TODO: use this signal as the final active high data memory write enable signal
+    signal s_DMemAddr       : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory address input
+    signal s_DMemData       : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
+    signal s_DMemOut        : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the data memory output
     
     -- Required register file signals 
-    signal s_RegWr        : std_logic; -- TODO: use this signal as the final active high write enable input to the register file
-    signal s_RegWrAddr    : std_logic_vector(M-1 downto 0); -- TODO: use this signal as the final destination register address input
-    signal s_RegWrData    : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
+    signal s_RegWr          : std_logic; -- TODO: use this signal as the final active high write enable input to the register file
+    signal s_RegWrAddr      : std_logic_vector(M-1 downto 0); -- TODO: use this signal as the final destination register address input
+    signal s_RegWrData      : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
 
     -- Required instruction memory signals
-    signal s_IMemAddr     : std_logic_vector(N-1 downto 0); -- Do not assign this signal, assign to s_NextInstAddr instead
-    signal s_NextInstAddr : std_logic_vector(N-1 downto 0); -- TODO: use this signal as your intended final instruction memory address input.
-    signal s_Inst         : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the instruction signal 
+    signal s_IMemAddr       : std_logic_vector(N-1 downto 0); -- Do not assign this signal, assign to s_NextInstAddr instead
+    signal s_NextInstAddr   : std_logic_vector(N-1 downto 0); -- TODO: use this signal as your intended final instruction memory address input.
+    signal s_Inst           : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the instruction signal 
 
-    -- Temp signals for execute stage
-    signal wb_WBSignal      : wb_control_t;
+    -- instruction Decode Signals
+    siganl s_Zero           : std_logic;
+    signal s_Control        : control_t;
+    
+    -- Execute Signals
+    signal s_ALUInput1      : std_logic_vector(N-1 downto 0);
+    signal s_ALUInput2      : std_logic_vector(N-1 downto 0);
+
+
+    -- Temp signals for id stage
+    -- id
+    signal id_Inst          : std_logic_vector(N-1 downto 0);
+    -- out
+    signal id_EXControl     : ex_control_t;
+    signal id_MEMControl    : ex_control_t;
+    signal id_WBControl     : wb_control_t;
+    signal id_Reg1Out       : std_logic_vector(N-1 downto 0);
+    signal id_Reg2Out       : std_logic_vector(N-1 downto 0);
+    signal id_Shamt         : std_logic_vector(N-1 downto 0);
+    signal id_SignExt       : std_logic_vector(N-1 downto 0);
+    signal id_ZeroExt       : std_logic_vector(N-1 downto 0);
+    
+    -- Temp signals for ex stage
+    -- in
+    signal ex_EXControl     : ex_control_t;
+    signal ex_Reg1Out       : std_logic_vector(N-1 downto 0);
+    signal ex_Reg2Out       : std_logic_vector(N-1 downto 0);
+    signal ex_Shamt         : std_logic_vector(N-1 downto 0);
+    signal ex_SignExt       : std_logic_vector(N-1 downto 0);
+    signal ex_ZeroExt       : std_logic_vector(N-1 downto 0);
+    -- out
+    signal ex_ALUOut        : std_logic_vector(N-1 downto 0);
+    -- both
+    signal ex_MEMControl    : ex_control_t;
+    signal ex_WBControl     : wb_control_t;
+    signal ex_PCInc         : std_logic_vector(N-1 downto 0);
+    signal ex_RegWrAddr     : std_logic_vector(N-1 downto 0);
+    
+    -- Temp signals for mem stage
+    -- in
+    signal mem_MEMControl   : mem_control_t;
+    signal mem_Reg2Out      : std_logic_vector(N-1 downto 0);
+    -- out
+    signal mem_DMEMOut      : std_logic_vector(N-1 downto 0);
+    signal mem_PartialMemOut: std_logic_vector(N-1 downto 0);
+    -- both
+    signal mem_WBControl    : wb_control_t;
+    signal mem_ALUOut       : std_logic_vector(N-1 downto 0);
+    signal mem_PCInc        : std_logic_vector(N-1 downto 0);
+    signal mem_RegWrAddr    : std_logic_vector(N-1 downto 0);
+    
+    -- Temp signals for wb stage
+    -- in
+    signal wb_WBControl     : wb_control_t;
     signal wb_DMEMOut       : std_logic_vector(N-1 downto 0);
     signal wb_ALUOut        : std_logic_vector(N-1 downto 0);
     signal wb_PCInc         : std_logic_vector(N-1 downto 0);
+    signal wb_RegWrAddr     : std_logic_vector(N-1 downto 0);
     signal wb_PartialMemOut : std_logic_vector(N-1 downto 0);
 
 
@@ -115,7 +155,7 @@ architecture structure of MIPS_Processor is
             q           : out std_logic_vector((DATA_WIDTH -1) downto 0)
         );
     end component;
-
+        
     component control_unit
         port(
             i_Opc          : in std_logic_vector(5 downto 0); 
@@ -126,31 +166,101 @@ architecture structure of MIPS_Processor is
        ); 
     end component;
 
-    component execute
+    component reg_file
         port(
-            PCInc           : in std_logic_vector(N-1 downto 0);
-            inst            : in std_logic_vector(N-1 downto 0);
-            iCLK            : in std_logic;
-            iRST            : in std_logic;
-            reg_wr          : in std_logic;
-            mem_wr          : in std_logic;
-            alu_input1_sel  : in std_logic;
-            partial_mem_sel : in std_logic_vector(1 downto 0);
-            reg_dst_sel     : in std_logic_vector(1 downto 0);
-            reg_wr_sel      : in std_logic_vector(1 downto 0);
-            alu_input2_sel  : in std_logic_vector(1 downto 0);
-            alu_control     : in alu_control_t;
-            reg1_val        : out std_logic_vector(N-1 downto 0);
-            oALUOut         : out std_logic_vector(N-1 downto 0);
-            oOVFL           : out std_logic;
-            oZero           : out std_logic;
-            iRegWr          : out std_logic;                        -- for the three needed reg signals
-            iRegWrAddr      : out std_logic_vector(M-1 downto 0);   -- for the three needed reg signals
-            iRegWrData      : out std_logic_vector(N-1 downto 0);   -- for the three needed reg signals
-            iDMemWr         : out std_logic;                        -- for the three needed dmem signals
-            iDMemAddr       : out std_logic_vector(N-1 downto 0);   -- for the three needed dmem signals
-            iDMemData       : out std_logic_vector(N-1 downto 0);   -- for the three needed dmem signals
-            iDMemOut        : in std_logic_vector(N-1 downto 0)    -- for the three needed dmem signals
+            i_CLK       : in std_logic;
+            i_WEN       : in std_logic;
+            i_RST       : in std_logic;
+            i_W         : in std_logic_vector(N-1 downto 0); 
+            i_WS        : in std_logic_vector(4 downto 0);   
+            i_R1S       : in std_logic_vector(4 downto 0);  
+            i_R2S       : in std_logic_vector(4 downto 0);
+            o_R1        : out std_logic_vector(N-1 downto 0); 
+            o_R2        : out std_logic_vector(N-1 downto 0)   
+        );
+    end component;
+
+    component alu
+        port(
+            i_D0        : in std_logic_vector(N-1 downto 0);
+            i_D1        : in std_logic_vector(N-1 downto 0);
+            i_C         : in alu_control_t;         
+            o_OVFL      : out std_logic;
+            o_Z         : out std_logic;
+            o_Q         : out std_logic_vector(N-1 downto 0)
+        ); 
+    end component;
+
+    component partial_mem
+        port(
+            i_X         : in std_logic_vector(N-1 downto 0);
+            i_A         : in std_logic_vector(1 downto 0);
+            i_S         : in std_logic_vector(1 downto 0);
+            o_Y         : out std_logic_vector(N-1 downto 0)
+        ); 
+    end component;
+
+
+    component ID_EX 
+        port(
+            i_CLK           : in std_logic;
+            i_RST           : in std_logic;
+            i_Reg1Out       : in std_logic_vector(N-1 downto 0);
+            i_Reg2Out       : in std_logic_vector(N-1 downto 0);
+            i_Shamt         : in std_logic_vector(N-1 downto 0);
+            i_ZeroExt       : in std_logic_vector(N-1 downto 0);
+            i_SignExt       : in std_logic_vector(N-1 downto 0);
+            i_PCInc         : in std_logic_vector(N-1 downto 0);
+            i_RegWrAddr     : in std_logic_vector(N-1 downto 0);
+            i_EXControl     : in ex_control_t;
+            i_MEMControl    : in mem_control_t;
+            i_WBControl     : in wb_control_t;
+            o_Reg1Out       : out std_logic_vector(N-1 downto 0);
+            o_Reg2Out       : out std_logic_vector(N-1 downto 0);
+            o_Shamt         : out std_logic_vector(N-1 downto 0);
+            o_ZeroExt       : out std_logic_vector(N-1 downto 0);
+            o_SignExt       : out std_logic_vector(N-1 downto 0);
+            o_PCInc         : out std_logic_vector(N-1 downto 0);
+            o_RegWrAddr     : out std_logic_vector(N-1 downto 0);
+            o_EXControl     : out ex_control_t;
+            o_MEMControl    : out mem_control_t;
+            o_WBControl     : out wb_control_t
+        ); 
+    end component;
+
+    component EX_MEM 
+        port(
+            i_CLK           : in std_logic;
+            i_RST           : in std_logic;
+            i_ALUOut        : in std_logic_vector(N-1 downto 0);
+            i_PCInc         : in std_logic_vector(N-1 downto 0);
+            i_DMemAddr      : in std_logic_vector(N-1 downto 0);
+            i_MEMControl    : in mem_control_t;
+            i_WBControl     : in wb_control_t;
+            o_ALUOut        : out std_logic_vector(N-1 downto 0);
+            o_PCInc         : out std_logic_vector(N-1 downto 0);
+            o_DMemAddr      : out std_logic_vector(N-1 downto 0);
+            o_MEMControl    : out mem_control_t;
+            o_WBControl     : out wb_control_t
+        ); 
+    end component;
+
+    component MEM_WB 
+        port(
+            i_CLK           : in std_logic;
+            i_RST           : in std_logic;
+            i_ALUOut        : in std_logic_vector(N-1 downto 0);
+            i_DMEMOut       : in std_logic_vector(N-1 downto 0);
+            i_PartialMemOut : in std_logic_vector(N-1 downto 0);
+            i_RegWrAddr     : in std_logic_vector(N-1 downto 0);
+            i_PCInc         : in std_logic_vector(N-1 downto 0);
+            i_WBControl     : in wb_control_t;
+            o_ALUOut        : out std_logic_vector(N-1 downto 0);
+            o_DmemOut       : out std_logic_vector(N-1 downto 0);
+            o_PartialMemOut : out std_logic_vector(N-1 downto 0);
+            o_RegWrAddr     : out std_logic_vector(N-1 downto 0);
+            o_PCInc         : out std_logic_vector(N-1 downto 0);
+            o_WBControl     : out wb_control_t
         ); 
     end component;
 
@@ -187,60 +297,146 @@ begin
 
     ControlUnit: control_unit
     port map(
-        i_Opc          => s_Inst(31 downto 26),
-        i_Funct        => s_Inst(5 downto 0),
+        i_Opc          => id_Inst(31 downto 26),
+        i_Funct        => id_Inst(5 downto 0),
         i_Zero         => s_Zero,
-        o_ctrl_Q       => s_ControlUnit,
-        o_alu_Q        => s_ALUControlUnit
+        o_ctrl_Q       => id_ControlUnit,
+        o_alu_Q        => id_ALUControlUnit
     );
 
+    RegFile: reg_file 
+    port map(
+        i_CLK   => iCLK, 
+        i_WEN   => id_ControlUnitreg_wr,
+        i_RST   => iRST,
+        i_W     => s_WriteVal,
+        i_WS    => s_WriteSel,
+        i_R1S   => inst(25 downto 21),
+        i_R2S   => inst(20 downto 16),
+        o_R1    => s_Reg1Val,
+        o_R2    => s_Reg2Val
+    );
+
+    s_Zero <= ;
 
     --------------- ID/EX STAGE --------------------------
 
-    IExecute: execute
+    IID_EX: ID_EX
     port map(
-        PCInc           => s_PCInc,
-        inst            => s_Inst,
-        iCLK            => iCLK, 
-        iRST            => iRST,
-        reg_wr          => s_ControlUnit.reg_wr,
-        mem_wr          => s_ControlUnit.mem_wr,
-        alu_input1_sel  => s_ControlUnit.alu_input1_sel,
-        partial_mem_sel => s_ControlUnit.partial_mem_sel,
-        reg_dst_sel     => s_ControlUnit.reg_dst_sel,
-        reg_wr_sel      => s_ControlUnit.reg_wr_sel,
-        alu_input2_sel  => s_ControlUnit.alu_input2_sel,
-        alu_control     => s_ALUControlUnit,
-        reg1_val        => s_Reg1Val,
-        oALUOut         => oALUOut,
-        oOVFL           => s_Ovfl,
-        oZero           => s_Zero,
-        iRegWr          => s_RegWr,
-        iRegWrAddr      => s_RegWrAddr,
-        iRegWrData      => s_RegWrData,  
-        iDMemWr         => s_DMemWr,
-        iDMemAddr       => s_DMemAddr,
-        iDMemData       => s_DMemData,    
-        iDMemOut        => s_DMemOut
+        i_CLK           => iCLK,
+        i_RST           => iRST,
+        i_Reg1Out       => id_Reg1Out,
+        i_Reg2Out       => id_Reg2Out,
+        i_Shamt         => id_Shamt,
+        i_SignExt       => id_SignExt,
+        i_ZeroExt       => id_ZeroExt,
+        i_PCInc         => id_PCInc, 
+        i_RegWrAddr     => id_RegWrAddr,      
+        i_EXControl     => id_EXControl,     
+        i_MEMControl    => id_MEMControl,
+        i_WBControl     => id_WBControl,
+        o_Reg1Out       => ex_Reg1Out,
+        o_Reg2Out       => ex_Reg2Out,
+        o_Shamt         => ex_Shamt,
+        o_SignExt       => ex_SignExt,
+        o_ZeroExt       => ex_ZeroExt,
+        o_PCInc         => ex_PCInc, 
+        o_RegWrAddr     => ex_RegWrAddr,      
+        o_EXControl     => ex_EXControl,     
+        o_MEMControl    => ex_MEMControl,
+        o_WBControl     => ex_WBControl
+    ); 
+
+    --------------- EX STAGE -----------------------------
+
+    with ex_EXControl.alu_input1_sel select
+        s_ALUInput1 <= ex_Reg1Out when '0',
+        ex_Shamt when others;
+    
+    with ex_EXControl.alu_input2_sel select
+        s_ALUInput2 <= s_Reg2Out when "00",
+        ex_SignExt when "10",
+        ex_ZeroExt when others;
+
+    ALUObject: alu
+    port map(
+        i_D0        => s_ALUInput1,
+        i_D1        => s_ALUInput2,
+        i_C         => ex_EXControl.alu_control,
+        o_OVFL      => s_Ovfl,
+        o_Q         => ex_ALUOut
     );
+
+    o_ALUOut    <= ex_ALUOut;
+
+    ------------------ EX/MEM STAGE -----------------------
+
+    IEX_MEM: EX_MEM
+    port map(
+        i_CLK           => iCLK,
+        i_RST           => iRST,
+        i_ALUOut        => ex_ALUOut,
+        i_Reg2Out       => ex_Reg2Out,  
+        i_PCInc         => ex_PCInc,
+        i_RegWrAddr     => ex_RegWrAddr      
+        i_MEMControl    => ex_MEMControl,
+        i_WBControl     => ex_WBControl,
+        o_ALUOut        => mem_ALUOut,
+        o_Reg2Out       => mem_Reg2Out,
+        o_PCInc         => mem_PCInc, 
+        o_RegWrAddr     => mem_RegWrAddr,      
+        o_MEMControl    => mem_MEMControl,
+        o_WBControl     => mem_WBControl
+    ); 
 
     ------------------ MEM STAGE --------------------------
     
     DMem: mem
     port map(
         clk  => iCLK,
-        addr => s_DMemAddr(11 downto 2),
-        data => s_DMemData,
-        we   => s_ControlUnit.mem_wr,
-        q    => s_DMemOut
+        addr => mem_ALUOut(11 downto 2),
+        data => mem_Reg2Out,
+        we   => mem_MEMControl.mem_wr,
+        q    => mem_DMEMOut
     );
+
+    PartialMem: partial_mem
+    port map(
+        i_X         => mem_DMemOut,
+        i_A         => mem_ALUOut(1 downto 0),
+        i_S         => mem_MEMControl.partial_mem_sel,
+        o_Y         => mem_PartialMemOut
+    );
+
+    s_DMemWr    <= mem_MEMControl.mem_wr;
+    s_DMemAddr  <= mem_DMEMAddr;
+    s_DMemData  <= mem_ALUOut;
+    s_DMemOut   <= mem_DMEMOut;
+
 
     ---------------- MEM/WB STAGE -------------------------
 
+    IMEM_WB: MEM_WB
+    port map(
+        i_CLK           => iCLK,
+        i_RST           => iRST,
+        i_ALUOut        => mem_ALUOut,
+        i_DMEMOut       => mem_DMEMOut,
+        i_PartialMemOut => mem_PartialMemOut,
+        i_RegWrAddr     => mem_RegWrAddr,
+        i_PCInc         => mem_PCInc,
+        i_WBControl     => mem_WBControl,
+        o_ALUOut        => wb_ALUOut,
+        o_DmemOut       => wb_DmemOut,
+        o_PartialMemOut => wb_PartialMemOut,
+        o_RegWrAddr     => wb_RegWrAddr,
+        o_PCInc         => wb_PCInc,
+        o_WBControl     => wb_WBControl
+    ); 
 
     ----------------- WB STAGE ----------------------------
 
-    with wb_control_t.reg_wr_sel select
+    with wb_WBControl.reg_wr_sel select
         s_RegWrData <= wb_ALUOut when "00",
         wb_DMemOut when "01",
         wb_PCInc when "10",
