@@ -65,18 +65,30 @@ architecture structure of MIPS_Processor is
     signal s_NextInstAddr   : std_logic_vector(N-1 downto 0); -- TODO: use this signal as your intended final instruction memory address input.
     signal s_Inst           : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the instruction signal 
 
+    -- instruction Fetch and Decode Signals
+    signal s_PCNext             : std_logic;
+    signal s_PCJumpNext         : std_logic_vector(N-1 downto 0); 
+    signal s_PCBranchNext       : std_logic_vector(N-1 downto 0); 
+    signal s_PCBranchAdderInput : std_logic_vector(N-1 downto 0);
+        
     -- instruction Decode Signals
-    siganl s_Zero           : std_logic;
-    signal s_Control        : control_t;
+    signal s_Zero               : std_logic;
+    signal s_Control            : control_t; 
     
     -- Execute Signals
     signal s_ALUInput1      : std_logic_vector(N-1 downto 0);
     signal s_ALUInput2      : std_logic_vector(N-1 downto 0);
 
 
+    -- Temp signals for if stage
+    -- out
+    signal if_Inst          : std_logic_vector(N-1 downto 0);
+    signal if_PCInc         : std_logic_vector(N-1 downto 0);
+
     -- Temp signals for id stage
-    -- id
+    -- in
     signal id_Inst          : std_logic_vector(N-1 downto 0);
+    signal id_PCInc         : std_logic_vector(N-1 downto 0);
     -- out
     signal id_EXControl     : ex_control_t;
     signal id_MEMControl    : ex_control_t;
@@ -126,19 +138,17 @@ architecture structure of MIPS_Processor is
     signal wb_PartialMemOut : std_logic_vector(N-1 downto 0);
 
 
-    component fetch is
+    component pc_dffg
+        generic(
+            N           :positive       := N     
+        );
         port(
-            iCLK            : in std_logic;
-            iRST            : in std_logic;
-            iInstLd         : in std_logic;
-            iInstAddr       : in std_logic_vector(N-1 downto 0);
-            jumpReg         : in std_logic_vector(N-1 downto 0);
-            PCSel           : in std_logic_vector(1 downto 0);
-            inst            : in std_logic_vector(N-1 downto 0);
-            PCInc           : out std_logic_vector(N-1 downto 0);
-            iNextInstAddr   : out std_logic_vector(N-1 downto 0);   -- for the two needed imem signals
-            iIMemAddr       : out std_logic_vector(N-1 downto 0)    -- for the two needed imem signals
-        ); 
+          i_CLK         : in std_logic;                            -- Clock input
+          i_RST         : in std_logic;                            -- Reset input
+          i_WE          : in std_logic;                            -- Write enable input
+          i_D           : in std_logic_vector(N-1 downto 0);       -- Data value input
+          o_Q           : out std_logic_vector(N-1 downto 0)       -- Data value output
+      );
     end component;
 
     component mem
@@ -200,6 +210,17 @@ architecture structure of MIPS_Processor is
         ); 
     end component;
 
+    
+    component IF_ID 
+        port(
+            i_CLK             : in std_logic;
+            i_RST             : in std_logic;
+            i_PCIncIn         : in std_logic_vector(N-1 downto 0);
+            i_InstIn          : in std_logic_vector(N-1 downto 0);
+            o_PCIncOut        : out std_logic_vector(N-1 downto 0);
+            o_InstOut         : out std_logic_vector(N-1 downto 0)
+        ); 
+    component IF_ID;
 
     component ID_EX 
         port(
@@ -267,18 +288,33 @@ architecture structure of MIPS_Processor is
 begin
 
     -------------- IF STAGE -------------------------
-    IFetch: fetch
+     
+    with s_Control.PCSel select
+        s_PCNext <= id_Reg1Out when "11",
+        s_PCJumpNext when "01",
+        s_PCBranchNext when "10",
+        if_PCInc when others;
+
+    PC : pc_dffg
     port map(
-        iCLK            => iCLK, 
-        iRST            => iRST,
-        iInstLd         => iInstLd,
-        iInstAddr       => iInstAddr,
-        jumpReg         => s_Reg1Val,
-        PCSel           => s_ControlUnit.pc_sel,
-        inst            => s_Inst,
-        PCInc           => s_PCInc,
-        iNextInstAddr   => s_NextInstAddr,
-        iIMemAddr        => s_IMemAddr
+        i_CLK       => iCLK,
+        i_RST       => iRST,
+        i_WE        => '1',
+        i_D         => s_PCNext,
+        o_Q         => s_NextInstAddr
+    );
+    
+    with iInstLd select
+        s_IMemAddr <= s_NextInstAddr when '0',
+        iInstAddr when others;
+
+    i_adder_n: adder_n
+	port map(
+        i_D0        => std_logic_vector(to_unsigned(4, N)),
+       	i_D1        => s_NextInstAddr,
+        i_C         => '0',
+        o_S         => if_PCInc,
+       	o_C         => open
     );
 
     IMem: mem
@@ -287,37 +323,74 @@ begin
         addr    => s_IMemAddr(11 downto 2),
         data    => iInstExt,
         we      => iInstLd,
-        q       => s_Inst
+        q       => if_Inst
     );
+
+    s_Inst <= if_Inst
 
     -------------- IF/ID STAGE -----------------------------
 
+    IIF_ID: IF_ID
+    port map(
+        i_CLK           => iCLK,
+        i_RST           => iRST,
+        i_PCInc         => if_PCInc,
+        i_Inst          => if_Inst,
+        o_PCInc         => id_PCInc,
+        o_Inst          => id_Inst
+    ); 
 
     --------------- ID STAGE ---------------------------
+
+    s_PCBranchAdderInput <= (18 to 31 => id_Inst(15)) & (id_Inst(15 downto 0) & "00");
+
+    i2_adder_n: adder_n
+	port map(
+        i_D0        => s_PCInc,
+       	i_D1        => s_PCBranchAdderInput,
+        i_C         => '0',
+        o_S         => s_PCBranchNext,
+       	o_C         => open
+    );
+
+    s_PCJumpNext <= PCInc(31 downto 28) & inst(25 downto 0) & "00";
 
     ControlUnit: control_unit
     port map(
         i_Opc          => id_Inst(31 downto 26),
         i_Funct        => id_Inst(5 downto 0),
         i_Zero         => s_Zero,
-        o_ctrl_Q       => id_ControlUnit,
-        o_alu_Q        => id_ALUControlUnit
+        o_ctrl_Q       => s_Control
     );
+
+    ControlDivider: contol_divider
+    port map(
+        i_ctrl          => s_Control,
+        o_EXControl     => id_EXControl,
+        o_MEMControl    => id_MEMControl,
+        o_WBControl     => id_WBControl 
+    );
+
+    with s_Control.reg_dst_sel select
+        id_RegWrAddr <= id_Inst(20 downto 16) when "00",
+        id_Inst(15 downto 11) when "01",
+        std_logic_vector(to_unsigned(31, M)) when "10",
+        (others => '-') when others;
 
     RegFile: reg_file 
     port map(
         i_CLK   => iCLK, 
-        i_WEN   => id_ControlUnitreg_wr,
+        i_WEN   => s_RegWr,
         i_RST   => iRST,
-        i_W     => s_WriteVal,
-        i_WS    => s_WriteSel,
+        i_W     => s_RegWrData,
+        i_WS    => s_RegWrAddr,
         i_R1S   => inst(25 downto 21),
         i_R2S   => inst(20 downto 16),
-        o_R1    => s_Reg1Val,
-        o_R2    => s_Reg2Val
+        o_R1    => id_Reg1Out,
+        o_R2    => id_Reg2Out
     );
 
-    s_Zero <= ;
+    s_Zero <= '1' when (id_Reg1Out = id_Reg2Out) else '0';
 
     --------------- ID/EX STAGE --------------------------
 
@@ -356,7 +429,8 @@ begin
     with ex_EXControl.alu_input2_sel select
         s_ALUInput2 <= s_Reg2Out when "00",
         ex_SignExt when "10",
-        ex_ZeroExt when others;
+        ex_ZeroExt when "11",
+        (others => '-') when others;
 
     ALUObject: alu
     port map(

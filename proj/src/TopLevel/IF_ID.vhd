@@ -19,12 +19,12 @@ entity IF_ID is
 
     generic(N : integer := 32 );
     port(
-        i_CLK             : in std_logic;
-        i_RST             : in std_logic;
-        i_PCIncIn         : in std_logic_vector(N-1 downto 0);
-        i_InstIn          : in std_logic_vector(N-1 downto 0);
-        o_PCIncOut        : out std_logic_vector(N-1 downto 0);
-        o_InstOut         : out std_logic_vector(N-1 downto 0)
+        i_CLK           : in std_logic;
+        i_RST           : in std_logic;
+        i_PCInc         : in std_logic_vector(N-1 downto 0);
+        i_Inst          : in std_logic_vector(N-1 downto 0);
+        o_PCInc         : out std_logic_vector(N-1 downto 0);
+        o_Inst          : out std_logic_vector(N-1 downto 0)
     ); 
 
 end IF_ID;

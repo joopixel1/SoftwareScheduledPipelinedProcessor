@@ -29,6 +29,7 @@ package MIPS_types is
   end record alu_control_t;
 
   type control_t is record
+    alu_control     : alu_control_t;
     reg_wr          : std_logic;
     mem_wr          : std_logic;
     alu_input1_sel  : std_logic;

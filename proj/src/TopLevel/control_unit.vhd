@@ -24,8 +24,7 @@ entity control_unit is
 		i_Opc          : in std_logic_vector(5 downto 0); 
      	i_Funct        : in std_logic_vector(5 downto 0);
       i_Zero         : in std_logic;   
-     	o_ctrl_Q       : out control_t;
-     	o_alu_Q        : out alu_control_t   
+     	o_ctrl_Q       : out control_t
    ); 
 
 end control_unit;
@@ -33,10 +32,10 @@ end control_unit;
 architecture mixed of control_unit is
 
 begin
-    o_alu_Q.allow_ovfl <= '1'    when ((i_Opc = "000000" and (i_Funct = "100000" or i_Funct = "100010")) or (i_Opc = "001000")) else   -- add, sub, addi
+   o_ctrl_Q.alu_control.allow_ovfl <= '1'    when ((i_Opc = "000000" and (i_Funct = "100000" or i_Funct = "100010")) or (i_Opc = "001000")) else   -- add, sub, addi
                           '0';  
 
-    o_alu_Q.alu_select <= "0000" when ((i_Opc = "000000" and (i_Funct = "100000" or i_Funct =  "100001"))          -- add, addu
+   o_ctrl_Q.alu_control.alu_select <= "0000" when ((i_Opc = "000000" and (i_Funct = "100000" or i_Funct =  "100001"))          -- add, addu
                        or (i_Opc = "001000" or i_Opc = "001001")                                             -- addi, addiu
                        or (i_Opc = "101011" or i_Opc = "100011" or i_Opc = "100000" or i_Opc = "100001" or i_Opc = "100100" or i_Opc = "100101")) else -- sw, lw, lb, lh, lbu, lhu
 
