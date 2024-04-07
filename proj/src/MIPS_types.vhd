@@ -45,10 +45,19 @@ package MIPS_types is
     reg_wr_sel      : std_logic_vector(1 downto 0);
   end record control_t;
 
+  type mem_control_t is record
+    mem_wr          : std_logic;
+    partial_mem_sel : std_logic_vector(1 downto 0);
+  end record control_t;
+
+  type ex_control_t is record
+    alu_control     : alu_control_t;
+    alu_input1_sel  : std_logic;
+    alu_input2_sel  : std_logic_vector(1 downto 0);
+  end record control_t;
+
 end package MIPS_types;
 
 package body MIPS_types is
   -- Probably won't need anything here... function bodies, etc.
 end package body MIPS_types;
-
--- proj/mips/Tests/srlv_3.s

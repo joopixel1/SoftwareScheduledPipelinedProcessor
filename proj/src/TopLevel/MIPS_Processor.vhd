@@ -69,7 +69,6 @@ architecture structure of MIPS_Processor is
     signal s_PCNext             : std_logic;
     signal s_PCJumpNext         : std_logic_vector(N-1 downto 0); 
     signal s_PCBranchNext       : std_logic_vector(N-1 downto 0); 
-    signal s_PCBranchAdderInput : std_logic_vector(N-1 downto 0);
         
     -- instruction Decode Signals
     signal s_Zero               : std_logic;
@@ -91,7 +90,7 @@ architecture structure of MIPS_Processor is
     signal id_PCInc         : std_logic_vector(N-1 downto 0);
     -- out
     signal id_EXControl     : ex_control_t;
-    signal id_MEMControl    : ex_control_t;
+    signal id_MEMControl    : mem_control_t;
     signal id_WBControl     : wb_control_t;
     signal id_Reg1Out       : std_logic_vector(N-1 downto 0);
     signal id_Reg2Out       : std_logic_vector(N-1 downto 0);
@@ -103,7 +102,6 @@ architecture structure of MIPS_Processor is
     -- in
     signal ex_EXControl     : ex_control_t;
     signal ex_Reg1Out       : std_logic_vector(N-1 downto 0);
-    signal ex_Reg2Out       : std_logic_vector(N-1 downto 0);
     signal ex_Shamt         : std_logic_vector(N-1 downto 0);
     signal ex_SignExt       : std_logic_vector(N-1 downto 0);
     signal ex_ZeroExt       : std_logic_vector(N-1 downto 0);
@@ -112,6 +110,7 @@ architecture structure of MIPS_Processor is
     -- both
     signal ex_MEMControl    : ex_control_t;
     signal ex_WBControl     : wb_control_t;
+    signal ex_Reg2Out       : std_logic_vector(N-1 downto 0);
     signal ex_PCInc         : std_logic_vector(N-1 downto 0);
     signal ex_RegWrAddr     : std_logic_vector(N-1 downto 0);
     
@@ -120,7 +119,7 @@ architecture structure of MIPS_Processor is
     signal mem_MEMControl   : mem_control_t;
     signal mem_Reg2Out      : std_logic_vector(N-1 downto 0);
     -- out
-    signal mem_DMEMOut      : std_logic_vector(N-1 downto 0);
+    signal mem_DMemOut      : std_logic_vector(N-1 downto 0);
     signal mem_PartialMemOut: std_logic_vector(N-1 downto 0);
     -- both
     signal mem_WBControl    : wb_control_t;
@@ -131,7 +130,7 @@ architecture structure of MIPS_Processor is
     -- Temp signals for wb stage
     -- in
     signal wb_WBControl     : wb_control_t;
-    signal wb_DMEMOut       : std_logic_vector(N-1 downto 0);
+    signal wb_DMemOut       : std_logic_vector(N-1 downto 0);
     signal wb_ALUOut        : std_logic_vector(N-1 downto 0);
     signal wb_PCInc         : std_logic_vector(N-1 downto 0);
     signal wb_RegWrAddr     : std_logic_vector(N-1 downto 0);
@@ -142,6 +141,7 @@ architecture structure of MIPS_Processor is
         generic(
             N           :positive       := N     
         );
+
         port(
           i_CLK         : in std_logic;                            -- Clock input
           i_RST         : in std_logic;                            -- Reset input
@@ -151,6 +151,20 @@ architecture structure of MIPS_Processor is
       );
     end component;
 
+    component adder_n
+        generic(
+            N           :positive       := N
+        );    
+
+        port(
+            i_D0        : in std_logic_vector(N-1 downto 0);
+            i_D1        : in std_logic_vector(N-1 downto 0);
+            i_C        : in std_logic;
+            o_S         : out std_logic_vector(N-1 downto 0);
+            o_C         : out std_logic
+        ); 
+    end component;
+    
     component mem
         generic(
             ADDR_WIDTH  : integer    := L;
@@ -172,8 +186,16 @@ architecture structure of MIPS_Processor is
             i_Funct        : in std_logic_vector(5 downto 0);   
             i_Zero         : in std_logic;
             o_ctrl_Q       : out control_t;
-            o_alu_Q        : out alu_control_t   
        ); 
+    end component;
+
+    component contol_divider
+        port(
+            i_ctrl          : in control_t;
+            o_EXControl     : out ex_control_t;
+            o_MEMControl    : out mem_control_t;
+            o_WBControl     : out wb_control_t 
+        )
     end component;
 
     component reg_file
@@ -212,17 +234,25 @@ architecture structure of MIPS_Processor is
 
     
     component IF_ID 
+        generic(
+            N           :positive       := N
+        );    
+
         port(
             i_CLK             : in std_logic;
             i_RST             : in std_logic;
-            i_PCIncIn         : in std_logic_vector(N-1 downto 0);
-            i_InstIn          : in std_logic_vector(N-1 downto 0);
-            o_PCIncOut        : out std_logic_vector(N-1 downto 0);
-            o_InstOut         : out std_logic_vector(N-1 downto 0)
+            i_PCInc         : in std_logic_vector(N-1 downto 0);
+            i_Inst          : in std_logic_vector(N-1 downto 0);
+            o_PCInc        : out std_logic_vector(N-1 downto 0);
+            o_Inst         : out std_logic_vector(N-1 downto 0)
         ); 
     component IF_ID;
 
     component ID_EX 
+        generic(
+            N           :positive       := N
+        );    
+        
         port(
             i_CLK           : in std_logic;
             i_RST           : in std_logic;
@@ -250,6 +280,10 @@ architecture structure of MIPS_Processor is
     end component;
 
     component EX_MEM 
+        generic(
+            N           :positive       := N
+        );    
+
         port(
             i_CLK           : in std_logic;
             i_RST           : in std_logic;
@@ -267,6 +301,10 @@ architecture structure of MIPS_Processor is
     end component;
 
     component MEM_WB 
+        generic(
+            N           :positive       := N
+        );    
+        
         port(
             i_CLK           : in std_logic;
             i_RST           : in std_logic;
@@ -342,12 +380,10 @@ begin
 
     --------------- ID STAGE ---------------------------
 
-    s_PCBranchAdderInput <= (18 to 31 => id_Inst(15)) & (id_Inst(15 downto 0) & "00");
-
     i2_adder_n: adder_n
 	port map(
         i_D0        => s_PCInc,
-       	i_D1        => s_PCBranchAdderInput,
+       	i_D1        => (18 to 31 => id_Inst(15)) & (id_Inst(15 downto 0) & "00"),
         i_C         => '0',
         o_S         => s_PCBranchNext,
        	o_C         => open
@@ -392,6 +428,10 @@ begin
 
     s_Zero <= '1' when (id_Reg1Out = id_Reg2Out) else '0';
 
+    id_Shamt <= ((0 to 26 => '0') & inst(10 downto 6));
+    id_SignExt <= (0 to 15 => inst(15)) & inst(15 downto 0);
+    id_ZeroExt <= x"000000" & "000" & inst(10 downto 6);
+
     --------------- ID/EX STAGE --------------------------
 
     IID_EX: ID_EX
@@ -427,7 +467,7 @@ begin
         ex_Shamt when others;
     
     with ex_EXControl.alu_input2_sel select
-        s_ALUInput2 <= s_Reg2Out when "00",
+        s_ALUInput2 <= ex_Reg2Out when "00",
         ex_SignExt when "10",
         ex_ZeroExt when "11",
         (others => '-') when others;
@@ -471,7 +511,7 @@ begin
         addr => mem_ALUOut(11 downto 2),
         data => mem_Reg2Out,
         we   => mem_MEMControl.mem_wr,
-        q    => mem_DMEMOut
+        q    => mem_DMemOut
     );
 
     PartialMem: partial_mem
@@ -485,7 +525,7 @@ begin
     s_DMemWr    <= mem_MEMControl.mem_wr;
     s_DMemAddr  <= mem_DMEMAddr;
     s_DMemData  <= mem_ALUOut;
-    s_DMemOut   <= mem_DMEMOut;
+    s_DMemOut   <= mem_DMemOut;
 
 
     ---------------- MEM/WB STAGE -------------------------
@@ -495,13 +535,13 @@ begin
         i_CLK           => iCLK,
         i_RST           => iRST,
         i_ALUOut        => mem_ALUOut,
-        i_DMEMOut       => mem_DMEMOut,
+        i_DMEMOut       => mem_DMemOut,
         i_PartialMemOut => mem_PartialMemOut,
         i_RegWrAddr     => mem_RegWrAddr,
         i_PCInc         => mem_PCInc,
         i_WBControl     => mem_WBControl,
         o_ALUOut        => wb_ALUOut,
-        o_DmemOut       => wb_DmemOut,
+        o_DmemOut       => wb_DMemOut,
         o_PartialMemOut => wb_PartialMemOut,
         o_RegWrAddr     => wb_RegWrAddr,
         o_PCInc         => wb_PCInc,
@@ -516,7 +556,7 @@ begin
         wb_PCInc when "10",
         wb_PartialMemOut when others; 
 
-    s_RegWr <= wb_control_t.reg_wr;
+    s_RegWr <= wb_WBControl.reg_wr;
     s_RegWrAddr <= wb_RegWrAddr;
 
     ------------------ HALT -------------------------------

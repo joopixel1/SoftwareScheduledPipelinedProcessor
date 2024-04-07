@@ -17,7 +17,10 @@ use IEEE.numeric_std.all;
 
 entity IF_ID is
 
-    generic(N : integer := 32 );
+    generic(
+        N           :positive
+    );
+    
     port(
         i_CLK           : in std_logic;
         i_RST           : in std_logic;
@@ -49,8 +52,8 @@ begin
             i_CLK       => i_CLK,
             i_RST       => i_RST,
             i_WE        => '1',
-            i_D         => i_PCIncIn,
-            o_Q         => o_PCIncOut
+            i_D         => i_PCInc,
+            o_Q         => o_PCInc
         );
 
     inst_input : n_dffg
@@ -58,8 +61,8 @@ begin
             i_CLK       => i_CLK,
             i_RST       => i_RST,
             i_WE        => '1',
-            i_D         => i_InstIn,
-            o_Q         => o_InstOut
+            i_D         => i_Inst,
+            o_Q         => o_Inst
         );
 
 

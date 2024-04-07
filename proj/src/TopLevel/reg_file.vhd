@@ -23,21 +23,17 @@ entity reg_file is
         i_CLK       : in std_logic;
         i_WEN       : in std_logic;
         i_RST       : in std_logic;
-        i_W         : in std_logic_vector(31 downto 0); 
-        i_WS        : in std_logic_vector(4 downto 0);   
-        i_R1S       : in std_logic_vector(4 downto 0);  
-        i_R2S       : in std_logic_vector(4 downto 0);
-        o_R1        : out std_logic_vector(31 downto 0); 
-        o_R2        : out std_logic_vector(31 downto 0)   
+        i_W         : in std_logic_vector(DATA_WIDTH-1 downto 0); 
+        i_WS        : in std_logic_vector(SELECT_WIDTH-1 downto 0);   
+        i_R1S       : in std_logic_vector(SELECT_WIDTH-1 downto 0);  
+        i_R2S       : in std_logic_vector(SELECT_WIDTH-1 downto 0);
+        o_R1        : out std_logic_vector(DATA_WIDTH-1 downto 0); 
+        o_R2        : out std_logic_vector(DATA_WIDTH-1 downto 0)   
     );
 
 end reg_file;
 
 architecture structure of reg_file is
-    
-    constant n  : integer   := 5;
-    constant m  : integer   := 32;
-
 
     component decoder
         generic(
@@ -50,7 +46,7 @@ architecture structure of reg_file is
         );
     end component;
 
-    component n_dffg
+    component reg
         generic(
             N           :positive       := DATA_WIDTH     
         );
