@@ -14,13 +14,17 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
+use work.MIPS_types.all;
 
 entity IF_ID is
 
     generic(
-        N           :positive
+        N           : positive;
+        M           : positive
     );
-    
+
+
     port(
         i_CLK           : in std_logic;
         i_RST           : in std_logic;

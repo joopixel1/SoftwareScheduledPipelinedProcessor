@@ -14,24 +14,30 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
+use work.MIPS_types.all;
 
 entity EX_MEM is
 
     generic(
-        N           :positive
+        N           : positive;
+        M           : positive
     );
+
 
     port(
         i_CLK           : in std_logic;
         i_RST           : in std_logic;
         i_ALUOut        : in std_logic_vector(N-1 downto 0);
+        i_Reg1Out       : in std_logic_vector(N-1 downto 0);
         i_PCInc         : in std_logic_vector(N-1 downto 0);
-        i_DMemAddr      : in std_logic_vector(N-1 downto 0);
+        i_RegWrAddr     : in std_logic_vector(M-1 downto 0);
         i_MEMControl    : in mem_control_t;
         i_WBControl     : in wb_control_t;
         o_ALUOut        : out std_logic_vector(N-1 downto 0);
+        o_Reg1Out       : out std_logic_vector(N-1 downto 0);
         o_PCInc         : out std_logic_vector(N-1 downto 0);
-        o_DMemAddr      : out std_logic_vector(N-1 downto 0);
+        o_RegWrAddr     : out std_logic_vector(M-1 downto 0);
         o_MEMControl    : out mem_control_t;
         o_WBControl     : out wb_control_t
     ); 
@@ -86,6 +92,15 @@ begin
         o_Q   => o_ALUOut
     );
 
+    Reg1Out_dffg: n_dffg
+    port map(
+        i_CLK => i_CLK,
+        i_RST => i_RST,
+        i_WE  => '1',
+        i_D   => i_Reg1Out,
+        o_Q   => o_Reg1Out
+    );
+
     PCInc_dffg: n_dffg
     port map(
         i_CLK => i_CLK,
@@ -95,13 +110,16 @@ begin
         o_Q   => o_PCInc
     );
 
-    DMemAddr_dffg: n_dffg
+    RegWrAddr_dffg: n_dffg
+    generic map(
+        N       => M
+    )
     port map(
         i_CLK => i_CLK,
         i_RST => i_RST,
         i_WE  => '1',
-        i_D   => i_DMemAddr,
-        o_Q   => o_DMemAddr
+        i_D   => i_RegWrAddr,
+        o_Q   => o_RegWrAddr
     );
 
     -- Instantiate flip-flops for control signals
@@ -123,4 +141,4 @@ begin
         o_Q   => o_WBControl
     );
 
-end behavior;
+end structure;

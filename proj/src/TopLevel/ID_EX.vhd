@@ -14,11 +14,14 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
+use work.MIPS_types.all;
 
 entity ID_EX is
 
     generic(
-        N           :positive
+        N           : positive;
+        M           : positive
     );
 
     port(
@@ -30,7 +33,7 @@ entity ID_EX is
         i_ZeroExt       : in std_logic_vector(N-1 downto 0);
         i_SignExt       : in std_logic_vector(N-1 downto 0);
         i_PCInc         : in std_logic_vector(N-1 downto 0);
-        i_RegWrAddr     : in std_logic_vector(N-1 downto 0);
+        i_RegWrAddr     : in std_logic_vector(M-1 downto 0);
         i_EXControl     : in ex_control_t;
         i_MEMControl    : in mem_control_t;
         i_WBControl     : in wb_control_t;
@@ -40,7 +43,7 @@ entity ID_EX is
         o_ZeroExt       : out std_logic_vector(N-1 downto 0);
         o_SignExt       : out std_logic_vector(N-1 downto 0);
         o_PCInc         : out std_logic_vector(N-1 downto 0);
-        o_RegWrAddr     : out std_logic_vector(N-1 downto 0);
+        o_RegWrAddr     : out std_logic_vector(M-1 downto 0);
         o_EXControl     : out ex_control_t;
         o_MEMControl    : out mem_control_t;
         o_WBControl     : out wb_control_t
@@ -150,6 +153,9 @@ begin
     );
 
     RegWrAddrOut_input : n_dffg
+    generic map(
+        N       => M
+    )
     port MAP(
         i_CLK   => i_CLK,
         i_RST   => i_RST,
@@ -158,7 +164,7 @@ begin
         o_Q     => o_RegWrAddr
     );
 
-    EXControl_FF : wb_dffg
+    EXControl_FF : ex_dffg
     port map(
         i_CLK   => i_CLK,
         i_RST   => i_RST,
@@ -167,7 +173,7 @@ begin
         o_Q     => o_EXControl
     );
 
-    MEMControl_FF : wb_dffg
+    MEMControl_FF : mem_dffg
     port map(
         i_CLK   => i_CLK,
         i_RST   => i_RST,

@@ -84,7 +84,7 @@ begin
         o_Q   => s_I
     );
 
-    n_dffg0_instance : n_dffg
+    n_dffg0_instance : reg
     port MAP(
         i_CLK       => i_CLK,
         i_RST       => i_RST,
@@ -94,7 +94,7 @@ begin
     );
 
     n_dffg_instances: for i in (2**SELECT_WIDTH)-1 downto 1 generate
-        n_dffg_instance : n_dffg
+        n_dffg_instance : reg
         port MAP(
             i_CLK       => i_CLK,
             i_RST       => i_RST,

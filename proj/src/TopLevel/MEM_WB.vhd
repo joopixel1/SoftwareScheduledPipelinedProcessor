@@ -14,11 +14,16 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+library work;
+use work.MIPS_types.all;
 
 entity MEM_WB is
-    generic (
-        N: positive
+
+    generic(
+        N           : positive;
+        M           : positive
     );
+
 
     port (
         i_CLK           : in std_logic;

@@ -19,6 +19,8 @@
 
 library IEEE;
 use IEEE.std_logic_1164.all;
+library work;
+use work.MIPS_types.all;
 
 entity ex_dffg is
 
@@ -53,7 +55,10 @@ architecture mixed of ex_dffg is
     process (i_CLK, i_RST)
     begin
       if (i_RST = '1') then
-        s_Q <= '0'; -- Use "(others => '0')" for N-bit values
+        s_Q.alu_input1_sel <= '0'; -- Use "(others => '0')" for N-bit values
+        s_Q.alu_input2_sel <= "00";
+        s_Q.alu_control.allow_ovfl <= '0';
+        s_Q.alu_control.alu_select <= "0000";
       elsif (rising_edge(i_CLK)) then
         s_Q <= s_D;
       end if;

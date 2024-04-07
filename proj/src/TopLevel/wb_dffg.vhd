@@ -19,6 +19,8 @@
 
 library IEEE;
 use IEEE.std_logic_1164.all;
+library work;
+use work.MIPS_types.all;
 
 entity wb_dffg is
     port(
@@ -47,7 +49,8 @@ begin
     process (i_CLK, i_RST)
     begin
         if (i_RST = '1') then
-            s_Q <= (others => '0');  -- Reset the output to all zeros
+            s_Q.reg_wr <= '0';  -- Reset the output to all zeros
+            s_Q.reg_wr_sel <= "00";
         elsif (rising_edge(i_CLK)) then
             s_Q <= s_D;
         end if;

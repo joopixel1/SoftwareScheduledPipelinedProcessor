@@ -43,18 +43,18 @@ package MIPS_types is
   type wb_control_t is record
     reg_wr          : std_logic;
     reg_wr_sel      : std_logic_vector(1 downto 0);
-  end record control_t;
+  end record wb_control_t;
 
   type mem_control_t is record
     mem_wr          : std_logic;
     partial_mem_sel : std_logic_vector(1 downto 0);
-  end record control_t;
+  end record mem_control_t;
 
   type ex_control_t is record
     alu_control     : alu_control_t;
     alu_input1_sel  : std_logic;
     alu_input2_sel  : std_logic_vector(1 downto 0);
-  end record control_t;
+  end record ex_control_t;
 
 end package MIPS_types;
 
