@@ -35,7 +35,6 @@ entity alu is
         i_D1        : in std_logic_vector(N-1 downto 0);
         i_C         : in alu_control_t;         -- Data value input
         o_OVFL      : out std_logic;
-        o_Z         : out std_logic;         -- Data value input
         o_Q         : out std_logic_vector(N-1 downto 0)       -- Data value output
     ); 
 
@@ -80,9 +79,6 @@ architecture structure of alu is
 begin
 
     o_OVFL <= s_0VFL_Add_Sub when (i_C.allow_ovfl = '1') else 
-        '0';
-
-    o_Z <= '1' when s_Add_Sub = x"00000000" else
         '0';
     
     with i_C.alu_select select

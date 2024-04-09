@@ -93,11 +93,10 @@ begin
 	                       "11" when (i_Opc = "001100" or i_Opc = "001101" or i_Opc = "001110") else    -- andi, ori, xori
 		               "00";
 
-   --  o_ctrl_Q.pc_sel <= "01" when (i_Opc = "000010" or i_Opc = "000011") else            -- j, jal
-   --                     "10" when ((i_Opc = "000101" and i_Zero = '0') or (i_Opc = "000100" and i_Zero = '1')) else -- bne, beq
-   --                     "11" when (i_Opc = "000000" and i_Funct = "001000") else         -- jr
-   --                     "00";
-   o_ctrl_Q.pc_sel <= "00";
+    o_ctrl_Q.pc_sel <= "01" when (i_Opc = "000010" or i_Opc = "000011") else            -- j, jal
+                       "10" when ((i_Opc = "000101" and i_Zero = '0') or (i_Opc = "000100" and i_Zero = '1')) else -- bne, beq
+                       "11" when (i_Opc = "000000" and i_Funct = "001000") else         -- jr
+                       "00";
 
     o_ctrl_Q.partial_mem_sel <= "00" when (i_Opc = "100000") else       -- lb
                               "01" when (i_Opc = "100001") else       -- lh

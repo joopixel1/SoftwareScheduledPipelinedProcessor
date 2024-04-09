@@ -219,7 +219,6 @@ architecture structure of MIPS_Processor is
             i_D1        : in std_logic_vector(N-1 downto 0);
             i_C         : in alu_control_t;         
             o_OVFL      : out std_logic;
-            o_Z         : out std_logic;
             o_Q         : out std_logic_vector(N-1 downto 0)
         ); 
     end component;
@@ -437,7 +436,7 @@ begin
 
     id_Shamt <= ((0 to 26 => '0') & id_Inst(10 downto 6));
     id_SignExt <= (0 to 15 => id_Inst(15)) & id_Inst(15 downto 0);
-    id_ZeroExt <= x"000000" & "000" & id_Inst(10 downto 6);
+    id_ZeroExt <= x"0000" & id_Inst(15 downto 0);
 
     --------------- ID/EX STAGE --------------------------
 
