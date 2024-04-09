@@ -44,98 +44,98 @@ end  MIPS_Processor;
 architecture structure of MIPS_Processor is
 
     -- Required halt signal -- for simulation
-    signal s_Halt           : std_logic;  -- TODO: this signal indicates to the simulation that intended program execution has completed. (Opcode: 01 0100)
+    signal s_Halt           : std_logic                         := '0';  -- TODO: this signal indicates to the simulation that intended program execution has completed. (Opcode: 01 0100)
 
     -- Required overflow signal -- for overflow exception detection
-    signal s_Ovfl           : std_logic;  -- : this signal indicates an overflow exception would have been initiated
+    signal s_Ovfl           : std_logic                         := '0';  -- : this signal indicates an overflow exception would have been initiated
 
     -- Required data memory signals
-    signal s_DMemWr         : std_logic; -- TODO: use this signal as the final active high data memory write enable signal
-    signal s_DMemAddr       : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory address input
-    signal s_DMemData       : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
-    signal s_DMemOut        : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the data memory output
+    signal s_DMemWr         : std_logic                         := '0'; -- TODO: use this signal as the final active high data memory write enable signal
+    signal s_DMemAddr       : std_logic_vector(N-1 downto 0)    := x"00000000"; -- TODO: use this signal as the final data memory address input
+    signal s_DMemData       : std_logic_vector(N-1 downto 0)    := x"00000000"; -- TODO: use this signal as the final data memory data input
+    signal s_DMemOut        : std_logic_vector(N-1 downto 0)    := x"00000000"; -- TODO: use this signal as the data memory output
     
     -- Required register file signals 
-    signal s_RegWr          : std_logic; -- TODO: use this signal as the final active high write enable input to the register file
-    signal s_RegWrAddr      : std_logic_vector(M-1 downto 0); -- TODO: use this signal as the final destination register address input
-    signal s_RegWrData      : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the final data memory data input
+    signal s_RegWr          : std_logic                         := '0'; -- TODO: use this signal as the final active high write enable input to the register file
+    signal s_RegWrAddr      : std_logic_vector(M-1 downto 0)    := "00000"; -- TODO: use this signal as the final destination register address input
+    signal s_RegWrData      : std_logic_vector(N-1 downto 0)    := x"00000000"; -- TODO: use this signal as the final data memory data input
 
     -- Required instruction memory signals
-    signal s_IMemAddr       : std_logic_vector(N-1 downto 0); -- Do not assign this signal, assign to s_NextInstAddr instead
-    signal s_NextInstAddr   : std_logic_vector(N-1 downto 0); -- TODO: use this signal as your intended final instruction memory address input.
-    signal s_Inst           : std_logic_vector(N-1 downto 0); -- TODO: use this signal as the instruction signal 
+    signal s_IMemAddr       : std_logic_vector(N-1 downto 0)    := x"00000000"; -- Do not assign this signal, assign to s_NextInstAddr instead
+    signal s_NextInstAddr   : std_logic_vector(N-1 downto 0)    := x"00000000"; -- TODO: use this signal as your intended final instruction memory address input.
+    signal s_Inst           : std_logic_vector(N-1 downto 0)    := x"00000000"; -- TODO: use this signal as the instruction signal 
 
     -- instruction Fetch and Decode Signals
-    signal s_PCNext             : std_logic_vector(N-1 downto 0);
-    signal s_PCJumpNext         : std_logic_vector(N-1 downto 0); 
-    signal s_PCBranchNext       : std_logic_vector(N-1 downto 0); 
+    signal s_PCNext         : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal s_PCJumpNext     : std_logic_vector(N-1 downto 0)    := x"00000000"; 
+    signal s_PCBranchNext   : std_logic_vector(N-1 downto 0)    := x"00000000"; 
         
     -- instruction Decode Signals
-    signal s_Zero               : std_logic;
-    signal s_Control            : control_t; 
+    signal s_Zero           : std_logic                         := '0';
+    signal s_Control        : control_t; 
     
     -- Execute Signals
-    signal s_ALUInput1      : std_logic_vector(N-1 downto 0);
-    signal s_ALUInput2      : std_logic_vector(N-1 downto 0);
+    signal s_ALUInput1      : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal s_ALUInput2      : std_logic_vector(N-1 downto 0)    := x"00000000";
 
 
     -- Temp signals for if stage
     -- out
-    signal if_Inst          : std_logic_vector(N-1 downto 0);
-    signal if_PCInc         : std_logic_vector(N-1 downto 0);
+    signal if_Inst          : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal if_PCInc         : std_logic_vector(N-1 downto 0)    := x"00000000";
 
     -- Temp signals for id stage
     -- in
-    signal id_Inst          : std_logic_vector(N-1 downto 0);
-    signal id_PCInc         : std_logic_vector(N-1 downto 0);
+    signal id_Inst          : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal id_PCInc         : std_logic_vector(N-1 downto 0)    := x"00000000";
     -- out
     signal id_EXControl     : ex_control_t;
     signal id_MEMControl    : mem_control_t;
     signal id_WBControl     : wb_control_t;
-    signal id_Reg1Out       : std_logic_vector(N-1 downto 0);
-    signal id_Reg2Out       : std_logic_vector(N-1 downto 0);
-    signal id_Shamt         : std_logic_vector(N-1 downto 0);
-    signal id_SignExt       : std_logic_vector(N-1 downto 0);
-    signal id_ZeroExt       : std_logic_vector(N-1 downto 0);
-    signal id_RegWrAddr     : std_logic_vector(M-1 downto 0);
+    signal id_Reg1Out       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal id_Reg2Out       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal id_Shamt         : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal id_SignExt       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal id_ZeroExt       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal id_RegWrAddr     : std_logic_vector(M-1 downto 0)    := "00000";
     
     -- Temp signals for ex stage
     -- in
     signal ex_EXControl     : ex_control_t;
-    signal ex_Reg1Out       : std_logic_vector(N-1 downto 0);
-    signal ex_Shamt         : std_logic_vector(N-1 downto 0);
-    signal ex_SignExt       : std_logic_vector(N-1 downto 0);
-    signal ex_ZeroExt       : std_logic_vector(N-1 downto 0);
+    signal ex_Reg1Out       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal ex_Shamt         : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal ex_SignExt       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal ex_ZeroExt       : std_logic_vector(N-1 downto 0)    := x"00000000";
     -- out
-    signal ex_ALUOut        : std_logic_vector(N-1 downto 0);
+    signal ex_ALUOut        : std_logic_vector(N-1 downto 0)    := x"00000000";
     -- both
     signal ex_MEMControl    : mem_control_t;
     signal ex_WBControl     : wb_control_t;
-    signal ex_Reg2Out       : std_logic_vector(N-1 downto 0);
-    signal ex_PCInc         : std_logic_vector(N-1 downto 0);
-    signal ex_RegWrAddr     : std_logic_vector(M-1 downto 0);
+    signal ex_Reg2Out       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal ex_PCInc         : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal ex_RegWrAddr     : std_logic_vector(M-1 downto 0)    := "00000";
     
     -- Temp signals for mem stage
     -- in
     signal mem_MEMControl   : mem_control_t;
-    signal mem_Reg2Out      : std_logic_vector(N-1 downto 0);
+    signal mem_Reg2Out      : std_logic_vector(N-1 downto 0)    := x"00000000";
     -- out
-    signal mem_DMemOut      : std_logic_vector(N-1 downto 0);
-    signal mem_PartialMemOut: std_logic_vector(N-1 downto 0);
+    signal mem_DMemOut      : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal mem_PartialMemOut: std_logic_vector(N-1 downto 0)    := x"00000000";
     -- both
     signal mem_WBControl    : wb_control_t;
-    signal mem_ALUOut       : std_logic_vector(N-1 downto 0);
-    signal mem_PCInc        : std_logic_vector(N-1 downto 0);
-    signal mem_RegWrAddr    : std_logic_vector(M-1 downto 0);
+    signal mem_ALUOut       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal mem_PCInc        : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal mem_RegWrAddr    : std_logic_vector(M-1 downto 0)    := "00000";
     
     -- Temp signals for wb stage
     -- in
     signal wb_WBControl     : wb_control_t;
-    signal wb_DMemOut       : std_logic_vector(N-1 downto 0);
-    signal wb_ALUOut        : std_logic_vector(N-1 downto 0);
-    signal wb_PCInc         : std_logic_vector(N-1 downto 0);
-    signal wb_RegWrAddr     : std_logic_vector(M-1 downto 0);
-    signal wb_PartialMemOut : std_logic_vector(N-1 downto 0);
+    signal wb_DMemOut       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal wb_ALUOut        : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal wb_PCInc         : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal wb_RegWrAddr     : std_logic_vector(M-1 downto 0)    := "00000";
+    signal wb_PartialMemOut : std_logic_vector(N-1 downto 0)    := x"00000000";
 
 
     component pc_dffg
@@ -181,7 +181,7 @@ architecture structure of MIPS_Processor is
         );
     end component;
         
-    component control_unit
+    component control
         port(
             i_Opc          : in std_logic_vector(5 downto 0); 
             i_Funct        : in std_logic_vector(5 downto 0);   
@@ -190,7 +190,7 @@ architecture structure of MIPS_Processor is
        ); 
     end component;
 
-    component contol_divider
+    component control_divider
         port(
             i_ctrl          : in control_t;
             o_EXControl     : out ex_control_t;
@@ -236,7 +236,8 @@ architecture structure of MIPS_Processor is
     
     component IF_ID 
         generic(
-            N           :positive       := N
+            N           :positive       := N;
+            M           : positive      := M
         );    
 
         port(
@@ -264,7 +265,7 @@ architecture structure of MIPS_Processor is
             i_ZeroExt       : in std_logic_vector(N-1 downto 0);
             i_SignExt       : in std_logic_vector(N-1 downto 0);
             i_PCInc         : in std_logic_vector(N-1 downto 0);
-            i_RegWrAddr     : in std_logic_vector(N-1 downto 0);
+            i_RegWrAddr     : in std_logic_vector(M-1 downto 0);
             i_EXControl     : in ex_control_t;
             i_MEMControl    : in mem_control_t;
             i_WBControl     : in wb_control_t;
@@ -274,7 +275,7 @@ architecture structure of MIPS_Processor is
             o_ZeroExt       : out std_logic_vector(N-1 downto 0);
             o_SignExt       : out std_logic_vector(N-1 downto 0);
             o_PCInc         : out std_logic_vector(N-1 downto 0);
-            o_RegWrAddr     : out std_logic_vector(N-1 downto 0);
+            o_RegWrAddr     : out std_logic_vector(M-1 downto 0);
             o_EXControl     : out ex_control_t;
             o_MEMControl    : out mem_control_t;
             o_WBControl     : out wb_control_t
@@ -317,13 +318,13 @@ architecture structure of MIPS_Processor is
             i_ALUOut        : in std_logic_vector(N-1 downto 0);
             i_DMEMOut       : in std_logic_vector(N-1 downto 0);
             i_PartialMemOut : in std_logic_vector(N-1 downto 0);
-            i_RegWrAddr     : in std_logic_vector(N-1 downto 0);
+            i_RegWrAddr     : in std_logic_vector(M-1 downto 0);
             i_PCInc         : in std_logic_vector(N-1 downto 0);
             i_WBControl     : in wb_control_t;
             o_ALUOut        : out std_logic_vector(N-1 downto 0);
             o_DmemOut       : out std_logic_vector(N-1 downto 0);
             o_PartialMemOut : out std_logic_vector(N-1 downto 0);
-            o_RegWrAddr     : out std_logic_vector(N-1 downto 0);
+            o_RegWrAddr     : out std_logic_vector(M-1 downto 0);
             o_PCInc         : out std_logic_vector(N-1 downto 0);
             o_WBControl     : out wb_control_t
         ); 
@@ -397,7 +398,7 @@ begin
 
     s_PCJumpNext <= id_PCInc(31 downto 28) & id_Inst(25 downto 0) & "00";
 
-    ControlUnit: control_unit
+    iControl: control
     port map(
         i_Opc          => id_Inst(31 downto 26),
         i_Funct        => id_Inst(5 downto 0),
@@ -405,7 +406,7 @@ begin
         o_ctrl_Q       => s_Control
     );
 
-    ControlDivider: contol_divider
+    ControlDivider: control_divider
     port map(
         i_ctrl          => s_Control,
         o_EXControl     => id_EXControl,
@@ -529,7 +530,7 @@ begin
     );
 
     s_DMemWr    <= mem_MEMControl.mem_wr;
-    s_DMemAddr  <= mem_ALUOut(11 downto 2);
+    s_DMemAddr  <= mem_ALUOut;
     s_DMemData  <= mem_Reg2Out;
     s_DMemOut   <= mem_DMemOut;
 
@@ -564,12 +565,7 @@ begin
 
     s_RegWr <= wb_WBControl.reg_wr;
     s_RegWrAddr <= wb_RegWrAddr;
+    s_Halt <= wb_WBControl.halt;
 
-    ------------------ HALT -------------------------------
-
-    with s_Inst(31 downto 26) select 
-        s_Halt <= '1' when "010100",
-        '0' when others;
-    
 end structure;
 

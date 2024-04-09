@@ -31,13 +31,13 @@ entity MEM_WB is
         i_ALUOut        : in std_logic_vector(N-1 downto 0);
         i_DMEMOut       : in std_logic_vector(N-1 downto 0);
         i_PartialMemOut : in std_logic_vector(N-1 downto 0);
-        i_RegWrAddr     : in std_logic_vector(N-1 downto 0);
+        i_RegWrAddr     : in std_logic_vector(M-1 downto 0);
         i_PCInc         : in std_logic_vector(N-1 downto 0);
         i_WBControl     : in wb_control_t;
         o_ALUOut        : out std_logic_vector(N-1 downto 0);
         o_DmemOut       : out std_logic_vector(N-1 downto 0);
         o_PartialMemOut : out std_logic_vector(N-1 downto 0);
-        o_RegWrAddr     : out std_logic_vector(N-1 downto 0);
+        o_RegWrAddr     : out std_logic_vector(M-1 downto 0);
         o_PCInc         : out std_logic_vector(N-1 downto 0);
         o_WBControl     : out wb_control_t
     );
@@ -97,6 +97,9 @@ begin
     );
 
     RegWrAddr_dffg: n_dffg
+    generic map(
+        N       => M
+    )
     port map (
         i_CLK => i_CLK,
         i_RST => i_RST,
