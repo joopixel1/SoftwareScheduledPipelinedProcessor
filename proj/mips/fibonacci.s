@@ -1,18 +1,20 @@
 # Compute several Fibonacci numbers and put in array, then print
 .data
 fibs:.word   0 : 19         # "array" of words to contain fib values
-size: .word  19             # size of "array" (agrees with array declaration)
+size: .word  19             # size of "array" (agrees with array declaswration)
 prompt: .asciiz "How many Fibonacci numbers to generate? (2 <= x <= 19)"
 .text
-      la   $s0, fibs        # load address of array
-      la   $s5, size        # load address of size variable
+      lasw   $s0, fibs        # load address of array
+      lasw   $s5, size        # load address of size variable
+      sll $0, $0, 0
+      sll $0, $0, 0
       lw   $s5, 0($s5)      # load array size
 
 # Optional: user inputs the number of Fibonacci numbers to generate
-#pr:   la   $a0, prompt      # load address of prompt for syscall
+#pr:   lasw   $a0, prompt      # load address of prompt for syscall
 #      li   $v0, 4           # specify Print String service
 #      syscall               # print the prompt string
-#      li   $v0, ?????Replace_this_dummy_with_the_correct_numeric_value???????           # specify Read Integer service
+#      li   $v0, ?????Replaswce_this_dummy_with_the_correct_numeric_value???????           # specify Read Integer service
 #      syscall               # Read the number. After this instruction, the number read is in $v0.
 #      bgt  $v0, $s5, pr     # Check boundary on user input -- if invalid, restart
 #      blt  $v0, $zero, pr   # Check boundary on user input -- if invalid, restart
@@ -39,15 +41,18 @@ loop: lw   $s3, 0($s0)      # Get value from array F[n-2]
       sll $0, $0, 0
       sll $0, $0, 0
       bne $s1, $zero, loop  # repeat while not finished
+      sll $0, $0, 0
       
       # Fibonacci numbers are computed and stored in array. Print them.
-      la   $a0, fibs        # first argument for print (array)
+      lasw   $a0, fibs        # first argument for print (array)
       add  $a1, $zero, $s5  # second argument for print (size)
       jal  print            # call print routine. 
+      sll $0, $0, 0
 
       # The program is finished. Exit.
       halt
       j die 
+      sll $0, $0, 0
 		
 ###############################################################
 # Subroutine to print the numbers on one line.
@@ -57,7 +62,7 @@ head: .asciiz  "The Fibonacci numbers are:\n"
       .text
 print:add  $t0, $zero, $a0  # starting address of array of data to be printed
       add  $t1, $zero, $a1  # initialize loop counter to array size
-      la   $a0, head        # load address of the print heading string
+      lasw   $a0, head        # load address of the print heading string
       ori  $v0, $zero , 4           # specify Print String service
       syscall               # print the heading string
       
@@ -65,7 +70,7 @@ out:  lw   $a0, 0($t0)      # load the integer to be printed (the current Fib. n
       ori  $v0, $zero , 1           # specify Print Integer service
       syscall               # print fibonacci number
       
-      la   $a0, space       # load address of spacer for syscall
+      lasw   $a0, space       # load address of spacer for syscall
       ori  $v0, $zero , 4           # specify Print String service
       syscall               # print the spacer string
       
@@ -74,8 +79,10 @@ out:  lw   $a0, 0($t0)      # load the integer to be printed (the current Fib. n
       sll $0, $0, 0
       sll $0, $0, 0
       bne $t1, $zero , out         # repeat while not finished
+      sll $0, $0, 0
       
       jr   $ra              # return from subroutine
+      sll $0, $0, 0
       
 die:
 # End of subroutine to print the numbers on one line

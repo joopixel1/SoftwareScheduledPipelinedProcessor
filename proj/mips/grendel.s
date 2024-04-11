@@ -46,7 +46,11 @@ main_loop_body:
         trucks:
 
         xori    $2,$2,0x1
+        sll $0, $0, 0
+        sll $0, $0, 0
         andi    $2,$2,0x00ff
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq     $2,$0,kick
 
         lw      $4,24($fp)
@@ -57,11 +61,17 @@ main_loop_body:
 
 kick:
         lw      $2,24($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $2,$2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,24($fp)
 main_loop_control:
         lw      $2,24($fp)
-        slti     $2,$2, 4
+        slti    $2,$2, 4
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq	$2, $zero, hew # beq, j to simulate bne 
         j       main_loop_body
         hew:
@@ -71,11 +81,17 @@ main_loop_control:
 wave:
         lw      $2,28($fp)
         addiu   $2,$2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,28($fp)
 welcome:
         lw      $2,28($fp)
         slti    $2,$2,4
+        sll $0, $0, 0
+        sll $0, $0, 0
         xori	$2,$2,1 # xori 1, beq to simulate bne where val in [0,1]
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq     $2,$0,wave
 
         move    $2,$0
@@ -91,7 +107,11 @@ interest:
         j	is_visited
 	new:
         xori    $2,$2,0x1
+        sll $0, $0, 0
+        sll $0, $0, 0
         andi    $2,$2,0x00ff
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq     $2,$0,tasteful
 
         lw      $4,24($fp)
@@ -101,15 +121,19 @@ interest:
 
 tasteful:
         addiu   $2,$fp,28
+        sll $0, $0, 0
+        sll $0, $0, 0
         move    $4,$2
         la	$ra, badge
         j     next_edge
         badge:
         sw      $2,24($fp)
-        
+
 turkey:
         lw      $3,24($fp)
         li      $2,-1
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq	$3,$2,telling # beq, j to simulate bne
         j	interest
         telling:
@@ -117,22 +141,35 @@ turkey:
 	lw	$v0, 0($v0)
         addiu   $4,$2,-1
         la 	$3, res_idx
+        sll $0, $0, 0
         sw 	$4, 0($3)
         la	$4, res
         #lui     $3,%hi(res_idx)
         #sw      $4,%lo(res_idx)($3)
         #lui     $4,%hi(res)
         sll     $3,$2,2
+        sll $0, $0, 0
+        sll $0, $0, 0
         srl	$3,$3,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sra	$3,$3,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sll     $3,$3,2
        
        	xor	$at, $ra, $2 # does nothing 
         nor	$at, $ra, $2 # does nothing 
         
         la	$2, res
+        sll $0, $0, 0
+        sll $0, $0, 0
         andi	$at, $2, 0xffff # -1 will sign extend (according to assembler), but 0xffff won't
+        sll $0, $0, 0
+        sll $0, $0, 0
         addu 	$2, $4, $at
+        sll $0, $0, 0
+        sll $0, $0, 0
         addu    $2,$3,$2
         lw      $3,48($fp)
         sw      $3,0($2)
@@ -141,7 +178,7 @@ turkey:
         lw      $fp,40($sp)
         addiu   $sp,$sp,48
         jr      $ra
-   
+# --------------------------------------------------------------- i stopped here----------------------------------------------------    
 topsort:
         addiu   $sp,$sp,-48
         sw      $31,44($sp)
