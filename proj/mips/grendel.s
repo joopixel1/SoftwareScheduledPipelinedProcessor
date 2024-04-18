@@ -23,25 +23,32 @@ visited:
 res_idx:
         .word   3
 .text
-	li $sp, 0x10011000
-	li $fp, 0
-	la $ra pump
+	lilsw $sp, 0x10011000
+	lilsw $fp, 0
+	lasw $ra pump
 	j main # jump to the starting location
+        sll $0, $0, 0
+
 pump:
 	halt
 
 
 main:
         addiu   $sp,$sp,-40 # MAIN
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $31,36($sp)
         sw      $fp,32($sp)
         add    	$fp,$sp,$zero
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $0,24($fp)
         j       main_loop_control
+        sll $0, $0, 0
 
 main_loop_body:
         lw      $4,24($fp)
-        la 	$ra, trucks
+        lasw 	$ra, trucks
         j     is_visited
         trucks:
 
@@ -55,8 +62,9 @@ main_loop_body:
 
         lw      $4,24($fp)
         # addi 	$k0, $k0,1# breakpoint
-        la 	$ra, billowy
+        lasw 	$ra, billowy
         j     	topsort
+        sll $0, $0, 0
         billowy:
 
 kick:
@@ -73,19 +81,26 @@ main_loop_control:
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$2, $zero, hew # beq, j to simulate bne 
+        sll $0, $0, 0
         j       main_loop_body
-        hew:
+        sll $0, $0, 0
+hew:
         sw      $0,28($fp)
         j       welcome
+        sll $0, $0, 0
 
 wave:
         lw      $2,28($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $2,$2,1
         sll $0, $0, 0
         sll $0, $0, 0
         sw      $2,28($fp)
 welcome:
         lw      $2,28($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         slti    $2,$2,4
         sll $0, $0, 0
         sll $0, $0, 0
@@ -93,19 +108,24 @@ welcome:
         sll $0, $0, 0
         sll $0, $0, 0
         beq     $2,$0,wave
+        sll $0, $0, 0
 
         move    $2,$0
         move    $sp,$fp
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $31,36($sp)
         lw      $fp,32($sp)
         addiu   $sp,$sp,40
         jr       $ra
+        sll $0, $0, 0
         
 interest:
         lw      $4,24($fp)
-        la	$ra, new
+        lasw	$ra, new
         j	is_visited
-	new:
+        sll $0, $0, 0
+new:
         xori    $2,$2,0x1
         sll $0, $0, 0
         sll $0, $0, 0
@@ -115,7 +135,7 @@ interest:
         beq     $2,$0,tasteful
 
         lw      $4,24($fp)
-        la	$ra, partner
+        lasw	$ra, partner
         j     	topsort
         partner:
 
@@ -124,26 +144,27 @@ tasteful:
         sll $0, $0, 0
         sll $0, $0, 0
         move    $4,$2
-        la	$ra, badge
+        lasw	$ra, badge
         j     next_edge
-        badge:
+        sll $0, $0, 0
+badge:
         sw      $2,24($fp)
 
 turkey:
         lw      $3,24($fp)
-        li      $2,-1
+        lilsw      $2,-1
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$3,$2,telling # beq, j to simulate bne
         j	interest
         telling:
-	la 	$v0, res_idx
+	lasw 	$v0, res_idx
 	lw	$v0, 0($v0)
         addiu   $4,$2,-1
-        la 	$3, res_idx
+        lasw 	$3, res_idx
         sll $0, $0, 0
         sw 	$4, 0($3)
-        la	$4, res
+        lasw	$4, res
         #lui     $3,%hi(res_idx)
         #sw      $4,%lo(res_idx)($3)
         #lui     $4,%hi(res)
@@ -161,7 +182,7 @@ turkey:
        	xor	$at, $ra, $2 # does nothing 
         nor	$at, $ra, $2 # does nothing 
         
-        la	$2, res
+        lasw	$2, res
         sll $0, $0, 0
         sll $0, $0, 0
         andi	$at, $2, 0xffff # -1 will sign extend (according to assembler), but 0xffff won't
@@ -186,20 +207,20 @@ topsort:
         move    $fp,$sp
         sw      $4,48($fp)
         lw      $4,48($fp)
-        la	$ra, verse
+        lasw	$ra, verse
         j	mark_visited
         verse:
 
         addiu   $2,$fp,28
         lw      $5,48($fp)
         move    $4,$2
-        la 	$ra, joyous
+        lasw 	$ra, joyous
         j	iterate_edges
         joyous:
 
         addiu   $2,$fp,28
         move    $4,$2
-        la	$ra, whispering
+        lasw	$ra, whispering
         j     	next_edge
         whispering:
 
@@ -242,7 +263,7 @@ snail:
         lw      $2,4($2)
         move    $5,$2
         move    $4,$3
-        la	$ra,induce
+        lasw	$ra,induce
         j       has_edge
         induce:
         beq     $2,$0,quarter
@@ -268,7 +289,7 @@ waggish:
         beq	$2,$zero,mark # beq, j to simulate bne 
         j	snail
         mark:
-        li      $2,-1
+        lilsw      $2,-1
 
 cynical:
         move    $sp,$fp
@@ -282,13 +303,13 @@ has_edge:
         move    $fp,$sp
         sw      $4,32($fp)
         sw      $5,36($fp)
-        la      $2,adjacencymatrix
+        lasw      $2,adjacencymatrix
         lw      $3,32($fp)
         sll     $3,$3,2
         addu    $2,$3,$2
         lw      $2,0($2)
         sw      $2,16($fp)
-        li      $2,1
+        lilsw      $2,1
         sw      $2,8($fp)
         sw      $0,12($fp)
         j       measley
@@ -322,7 +343,7 @@ mark_visited:
         sw      $fp,28($sp)
         move    $fp,$sp
         sw      $4,32($fp)
-        li      $2,1
+        lilsw      $2,1
         sw      $2,8($fp)
         sw      $0,12($fp)
         j       recast
@@ -342,7 +363,7 @@ recast:
         j	example
         pat:
 
-       	la	$2, visited
+       	lasw	$2, visited
         sw      $2,16($fp)
         lw      $2,16($fp)
         lw      $3,0($2)
@@ -380,7 +401,7 @@ evasive:
         j     	justify
         representitive:
 
-        la	$2,visited
+        lasw	$2,visited
         lw      $2,0($2)
         sw      $2,16($fp)
         lw      $3,16($fp)
