@@ -23,8 +23,11 @@ visited:
 res_idx:
         .word   3
 .text
-	lilsw $sp, 0x10011000
-	lilsw $fp, 0
+	lui $sp, 0x1001
+        sll $0, $0, 0
+        sll $0, $0, 0
+        ori $sp, 0x1000
+	li $fp, 0
 	lasw $ra pump
 	j main # jump to the starting location
         sll $0, $0, 0
@@ -50,6 +53,7 @@ main_loop_body:
         lw      $4,24($fp)
         lasw 	$ra, trucks
         j     is_visited
+        sll $0, $0, 0
         trucks:
 
         xori    $2,$2,0x1
@@ -59,13 +63,14 @@ main_loop_body:
         sll $0, $0, 0
         sll $0, $0, 0
         beq     $2,$0,kick
+        sll $0, $0, 0
 
         lw      $4,24($fp)
         # addi 	$k0, $k0,1# breakpoint
         lasw 	$ra, billowy
         j     	topsort
         sll $0, $0, 0
-        billowy:
+billowy:
 
 kick:
         lw      $2,24($fp)
@@ -133,11 +138,13 @@ new:
         sll $0, $0, 0
         sll $0, $0, 0
         beq     $2,$0,tasteful
+        sll $0, $0, 0
 
         lw      $4,24($fp)
         lasw	$ra, partner
         j     	topsort
-        partner:
+        sll $0, $0, 0
+partner:
 
 tasteful:
         addiu   $2,$fp,28
@@ -152,16 +159,26 @@ badge:
 
 turkey:
         lw      $3,24($fp)
-        lilsw      $2,-1
+        lui $2, 0xFFFF
+        sll $0, $0, 0
+        sll $0, $0, 0
+        ori $2, 0xFFFF
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$3,$2,telling # beq, j to simulate bne
+        sll $0, $0, 0
         j	interest
-        telling:
+        sll $0, $0, 0
+telling:
 	lasw 	$v0, res_idx
+        sll $0, $0, 0
+        sll $0, $0, 0
 	lw	$v0, 0($v0)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $4,$2,-1
         lasw 	$3, res_idx
+        sll $0, $0, 0
         sll $0, $0, 0
         sw 	$4, 0($3)
         lasw	$4, res
@@ -193,223 +210,390 @@ turkey:
         sll $0, $0, 0
         addu    $2,$3,$2
         lw      $3,48($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $3,0($2)
         move    $sp,$fp
         lw      $31,44($sp)
         lw      $fp,40($sp)
         addiu   $sp,$sp,48
         jr      $ra
+        sll $0, $0, 0
 # --------------------------------------------------------------- i stopped here----------------------------------------------------    
+
+
 topsort:
         addiu   $sp,$sp,-48
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $31,44($sp)
         sw      $fp,40($sp)
         move    $fp,$sp
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $4,48($fp)
         lw      $4,48($fp)
         lasw	$ra, verse
         j	mark_visited
-        verse:
-
+        sll $0, $0, 0
+verse:
         addiu   $2,$fp,28
         lw      $5,48($fp)
+        sll $0, $0, 0
         move    $4,$2
         lasw 	$ra, joyous
         j	iterate_edges
-        joyous:
-
+        sll $0, $0, 0
+joyous:
         addiu   $2,$fp,28
+        sll $0, $0, 0
+        sll $0, $0, 0
         move    $4,$2
         lasw	$ra, whispering
         j     	next_edge
-        whispering:
-
+        sll $0, $0, 0
+whispering:
         sw      $2,24($fp)
         j       turkey
+        sll $0, $0, 0
 
 iterate_edges:
         addiu   $sp,$sp,-24
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $fp,20($sp)
         move    $fp,$sp
+        sll $0, $0, 0
+        sll $0, $0, 0
         subu	$at, $fp, $sp
         sw      $4,24($fp)
         sw      $5,28($fp)
         lw      $2,28($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,8($fp)
         sw      $0,12($fp)
         lw      $2,24($fp)
         lw      $4,8($fp)
         lw      $3,12($fp)
+        sll $0, $0, 0
         sw      $4,0($2)
         sw      $3,4($2)
         lw      $2,24($fp)
         move    $sp,$fp
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $fp,20($sp)
         addiu   $sp,$sp,24
         jr      $ra
+        sll $0, $0, 0
         
 next_edge:
         addiu   $sp,$sp,-32
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $31,28($sp)
         sw      $fp,24($sp)
         add	$fp,$zero,$sp
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $4,32($fp)
         j       waggish
+        sll $0, $0, 0
 
 snail:
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $3,0($2)
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,4($2)
+        sll $0, $0, 0
+        sll $0, $0, 0
         move    $5,$2
         move    $4,$3
         lasw	$ra,induce
         j       has_edge
-        induce:
+        sll $0, $0, 0
+induce:
         beq     $2,$0,quarter
+        sll $0, $0, 0
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,4($2)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $4,$2,1
         lw      $3,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $4,4($3)
         j       cynical
+        sll $0, $0, 0
 
 
 quarter:
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,4($2)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $3,$2,1
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $3,4($2)
 
 waggish:
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,4($2)
+        sll $0, $0, 0
+        sll $0, $0, 0
         slti    $2,$2,4
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq	$2,$zero,mark # beq, j to simulate bne 
+        sll $0, $0, 0
         j	snail
-        mark:
-        lilsw      $2,-1
+        sll $0, $0, 0
+mark:
+        lui $2, 0xFFFF
+        sll $0, $0, 0
+        sll $0, $0, 0
+        ori $2, 0xFFFF
 
 cynical:
         move    $sp,$fp
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $31,28($sp)
         lw      $fp,24($sp)
         addiu   $sp,$sp,32
         jr      $ra
+        sll $0, $0, 0
 has_edge:
         addiu   $sp,$sp,-32
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $fp,28($sp)
         move    $fp,$sp
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $4,32($fp)
         sw      $5,36($fp)
         lasw      $2,adjacencymatrix
         lw      $3,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sll     $3,$3,2
+        sll $0, $0, 0
+        sll $0, $0, 0
         addu    $2,$3,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,0($2)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,16($fp)
-        lilsw      $2,1
+        li      $2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,8($fp)
         sw      $0,12($fp)
         j       measley
+        sll $0, $0, 0
 
 look:
         lw      $2,8($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sll     $2,$2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,8($fp)
         lw      $2,12($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $2,$2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,12($fp)
 measley:
         lw      $3,12($fp)
         lw      $2,36($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         slt     $2,$3,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq     $2,$0,experience # beq, j to simulate bne 
+        sll $0, $0, 0
         j 	look
-       	experience:
+        sll $0, $0, 0
+experience:
         lw      $3,8($fp)
         lw      $2,16($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         and     $2,$3,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         slt     $2,$0,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         andi    $2,$2,0x00ff
         move    $sp,$fp
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $fp,28($sp)
         addiu   $sp,$sp,32
         jr      $ra
+        sll $0, $0, 0
         
 mark_visited:
         addiu   $sp,$sp,-32
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $fp,28($sp)
         move    $fp,$sp
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $4,32($fp)
-        lilsw      $2,1
+        li      $2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,8($fp)
         sw      $0,12($fp)
         j       recast
+        sll $0, $0, 0
 
 example:
         lw      $2,8($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sll     $2,$2,8
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,8($fp)
         lw      $2,12($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $2,$2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,12($fp)
 recast:
         lw      $3,12($fp)
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         slt     $2,$3,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq	$2,$zero,pat # beq, j to simulate bne
+        sll $0, $0, 0
         j	example
-        pat:
-
+        sll $0, $0, 0
+pat:
        	lasw	$2, visited
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,16($fp)
         lw      $2,16($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $3,0($2)
         lw      $2,8($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         or      $3,$3,$2
         lw      $2,16($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $3,0($2)
         move    $sp,$fp
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $fp,28($sp)
         addiu   $sp,$sp,32
         jr      $ra
+        sll $0, $0, 0
         
 is_visited:
         addiu   $sp,$sp,-32
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $fp,28($sp)
         move    $fp,$sp
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $4,32($fp)
         ori     $2,$zero,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,8($fp)
         sw      $0,12($fp)
         j       evasive
+        sll $0, $0, 0
 
 justify:
         lw      $2,8($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sll     $2,$2,8
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,8($fp)
         lw      $2,12($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         addiu   $2,$2,1
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,12($fp)
 evasive:
         lw      $3,12($fp)
         lw      $2,32($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         slt     $2,$3,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         beq	$2,$0,representitive # beq, j to simulate bne
+        sll $0, $0, 0
         j     	justify
-        representitive:
-
+        sll $0, $0, 0
+representitive:
         lasw	$2,visited
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,0($2)
+        sll $0, $0, 0
+        sll $0, $0, 0
         sw      $2,16($fp)
         lw      $3,16($fp)
         lw      $2,8($fp)
+        sll $0, $0, 0
+        sll $0, $0, 0
         and     $2,$3,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         slt     $2,$0,$2
+        sll $0, $0, 0
+        sll $0, $0, 0
         andi    $2,$2,0x00ff
         move    $sp,$fp
+        sll $0, $0, 0
+        sll $0, $0, 0
         lw      $fp,28($sp)
         addiu   $sp,$sp,32
         jr      $ra
+        sll $0, $0, 0
