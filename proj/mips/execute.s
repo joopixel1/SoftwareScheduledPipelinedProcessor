@@ -104,17 +104,21 @@ lh $30, 4($31)
 
 beq $16, $19, Lal
 sll $0, $0, 0
+sll $0, $0, 0
 
 Lal:
 beq $16, $17, Te
+sll $0, $0, 0
 sll $0, $0, 0
 
 Te:
 bne $16, $19, Un
 sll $0, $0, 0
+sll $0, $0, 0
 
 Un:
 bne $16, $17, Jus
+sll $0, $0, 0
 sll $0, $0, 0
 
 

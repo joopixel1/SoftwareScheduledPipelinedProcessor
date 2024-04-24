@@ -22,6 +22,7 @@ entity control is
 
 	port(
 		i_Opc          : in std_logic_vector(5 downto 0); 
+		ex_Opc         : in std_logic_vector(5 downto 0); 
      	i_Funct        : in std_logic_vector(5 downto 0);
       i_Zero         : in std_logic;   
      	o_ctrl_Q       : out control_t
@@ -93,9 +94,9 @@ begin
 	                       "11" when (i_Opc = "001100" or i_Opc = "001101" or i_Opc = "001110") else    -- andi, ori, xori
 		               "00";
 
-    o_ctrl_Q.pc_sel <= "01" when (i_Opc = "000010" or i_Opc = "000011") else            -- j, jal
-                       "10" when ((i_Opc = "000101" and i_Zero = '0') or (i_Opc = "000100" and i_Zero = '1')) else -- bne, beq
-                       "11" when (i_Opc = "000000" and i_Funct = "001000") else         -- jr
+    o_ctrl_Q.pc_sel <= "01" when (i_Opc = "000010" or i_Opc = "000011") and not ((ex_Opc = "000101" and i_Zero = '0') or (ex_Opc = "000100" and i_Zero = '1')) else            -- j, jal
+                       "10" when ((ex_Opc = "000101" and i_Zero = '0') or (ex_Opc = "000100" and i_Zero = '1')) else -- bne, beq
+                       "11" when (i_Opc = "000000" and i_Funct = "001000")  and not ((ex_Opc = "000101" and i_Zero = '0') or (ex_Opc = "000100" and i_Zero = '1')) else         -- jr
                        "00";
 
     o_ctrl_Q.partial_mem_sel <= "00" when (i_Opc = "100000") else       -- lb

@@ -33,6 +33,7 @@ entity ID_EX is
         i_ZeroExt       : in std_logic_vector(N-1 downto 0);
         i_SignExt       : in std_logic_vector(N-1 downto 0);
         i_PCInc         : in std_logic_vector(N-1 downto 0);
+        i_Inst          : in std_logic_vector(N-1 downto 0);
         i_RegWrAddr     : in std_logic_vector(M-1 downto 0);
         i_EXControl     : in ex_control_t;
         i_MEMControl    : in mem_control_t;
@@ -43,6 +44,7 @@ entity ID_EX is
         o_ZeroExt       : out std_logic_vector(N-1 downto 0);
         o_SignExt       : out std_logic_vector(N-1 downto 0);
         o_PCInc         : out std_logic_vector(N-1 downto 0);
+        o_Inst          : out std_logic_vector(N-1 downto 0);
         o_RegWrAddr     : out std_logic_vector(M-1 downto 0);
         o_EXControl     : out ex_control_t;
         o_MEMControl    : out mem_control_t;
@@ -150,6 +152,15 @@ begin
         i_WE    => '1',
         i_D     => i_PCInc,
         o_Q     => o_PCInc
+    );
+
+    InstOut_input : n_dffg
+    port MAP(
+        i_CLK   => i_CLK,
+        i_RST   => i_RST,
+        i_WE    => '1',
+        i_D     => i_Inst,
+        o_Q     => o_Inst
     );
 
     RegWrAddrOut_input : n_dffg

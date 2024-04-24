@@ -64,6 +64,7 @@ main_loop_body:
         sll $0, $0, 0
         beq     $2,$0,kick
         sll $0, $0, 0
+        sll $0, $0, 0
 
         lw      $4,24($fp)
         # addi 	$k0, $k0,1# breakpoint
@@ -86,6 +87,7 @@ main_loop_control:
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$2, $zero, hew # beq, j to simulate bne 
+        sll $0, $0, 0
         sll $0, $0, 0
         j       main_loop_body
         sll $0, $0, 0
@@ -114,6 +116,7 @@ welcome:
         sll $0, $0, 0
         beq     $2,$0,wave
         sll $0, $0, 0
+        sll $0, $0, 0
 
         move    $2,$0
         move    $sp,$fp
@@ -138,6 +141,7 @@ new:
         sll $0, $0, 0
         sll $0, $0, 0
         beq     $2,$0,tasteful
+        sll $0, $0, 0
         sll $0, $0, 0
 
         lw      $4,24($fp)
@@ -166,6 +170,7 @@ turkey:
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$3,$2,telling # beq, j to simulate bne
+        sll $0, $0, 0
         sll $0, $0, 0
         j	interest
         sll $0, $0, 0
@@ -320,6 +325,7 @@ snail:
 induce:
         beq     $2,$0,quarter
         sll $0, $0, 0
+        sll $0, $0, 0
         lw      $2,32($fp)
         sll $0, $0, 0
         sll $0, $0, 0
@@ -359,6 +365,7 @@ waggish:
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$2,$zero,mark # beq, j to simulate bne 
+        sll $0, $0, 0
         sll $0, $0, 0
         j	snail
         sll $0, $0, 0
@@ -434,6 +441,7 @@ measley:
         sll $0, $0, 0
         beq     $2,$0,experience # beq, j to simulate bne 
         sll $0, $0, 0
+        sll $0, $0, 0
         j 	look
         sll $0, $0, 0
 experience:
@@ -497,6 +505,7 @@ recast:
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$2,$zero,pat # beq, j to simulate bne
+        sll $0, $0, 0
         sll $0, $0, 0
         j	example
         sll $0, $0, 0
@@ -566,6 +575,7 @@ evasive:
         sll $0, $0, 0
         sll $0, $0, 0
         beq	$2,$0,representitive # beq, j to simulate bne
+        sll $0, $0, 0
         sll $0, $0, 0
         j     	justify
         sll $0, $0, 0

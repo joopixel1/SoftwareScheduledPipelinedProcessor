@@ -42,6 +42,7 @@ loop: lw   $s3, 0($s0)      # Get value from array F[n-2]
       sll $0, $0, 0
       bne $s1, $zero, loop  # repeat while not finished
       sll $0, $0, 0
+      sll $0, $0, 0
       
       # Fibonacci numbers are computed and stored in array. Print them.
       lasw   $a0, fibs        # first argument for print (array)
@@ -79,6 +80,7 @@ out:  lw   $a0, 0($t0)      # load the integer to be printed (the current Fib. n
       sll $0, $0, 0
       sll $0, $0, 0
       bne $t1, $zero , out         # repeat while not finished
+      sll $0, $0, 0
       sll $0, $0, 0
       
       jr   $ra              # return from subroutine

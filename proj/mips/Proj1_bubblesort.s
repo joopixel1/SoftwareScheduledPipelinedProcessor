@@ -48,6 +48,7 @@ inner_loop:
     beq $at, $zero, skip_swap
 
     sll $0, $0, 0
+    sll $0, $0, 0
 
     # Swap arr[j] and arr[j+1]
     sw $t5, ($t2)          # arr[(i+1) * n] = arr[i * n]
@@ -66,6 +67,7 @@ skip_swap:
     bne $at, $zero, inner_loop
 
     sll $0, $0, 0
+    sll $0, $0, 0
 
     addi $t0, $t0, 1       # i++
     sll $0, $0, 0
@@ -78,6 +80,7 @@ skip_swap:
     sll $0, $0, 0
     bne $at, $zero, outer_loop
 
+    sll $0, $0, 0
     sll $0, $0, 0
 
     jr $ra                 # Return

@@ -106,6 +106,7 @@ architecture structure of MIPS_Processor is
     signal ex_Shamt         : std_logic_vector(N-1 downto 0)    := x"00000000";
     signal ex_SignExt       : std_logic_vector(N-1 downto 0)    := x"00000000";
     signal ex_ZeroExt       : std_logic_vector(N-1 downto 0)    := x"00000000";
+    signal ex_Inst          : std_logic_vector(N-1 downto 0)    := x"00000000";
     -- out
     signal ex_ALUOut        : std_logic_vector(N-1 downto 0)    := x"00000000";
     -- both
@@ -184,8 +185,9 @@ architecture structure of MIPS_Processor is
     component control
         port(
             i_Opc          : in std_logic_vector(5 downto 0); 
-            i_Funct        : in std_logic_vector(5 downto 0);   
-            i_Zero         : in std_logic;
+            ex_Opc         : in std_logic_vector(5 downto 0); 
+            i_Funct        : in std_logic_vector(5 downto 0);
+            i_Zero         : in std_logic;   
             o_ctrl_Q       : out control_t
        ); 
     end component;
@@ -219,6 +221,7 @@ architecture structure of MIPS_Processor is
             i_D1        : in std_logic_vector(N-1 downto 0);
             i_C         : in alu_control_t;         
             o_OVFL      : out std_logic;
+            o_Z         : out std_logic;
             o_Q         : out std_logic_vector(N-1 downto 0)
         ); 
     end component;
@@ -264,6 +267,7 @@ architecture structure of MIPS_Processor is
             i_ZeroExt       : in std_logic_vector(N-1 downto 0);
             i_SignExt       : in std_logic_vector(N-1 downto 0);
             i_PCInc         : in std_logic_vector(N-1 downto 0);
+            i_Inst          : in std_logic_vector(N-1 downto 0);
             i_RegWrAddr     : in std_logic_vector(M-1 downto 0);
             i_EXControl     : in ex_control_t;
             i_MEMControl    : in mem_control_t;
@@ -274,6 +278,7 @@ architecture structure of MIPS_Processor is
             o_ZeroExt       : out std_logic_vector(N-1 downto 0);
             o_SignExt       : out std_logic_vector(N-1 downto 0);
             o_PCInc         : out std_logic_vector(N-1 downto 0);
+            o_Inst          : out std_logic_vector(N-1 downto 0);
             o_RegWrAddr     : out std_logic_vector(M-1 downto 0);
             o_EXControl     : out ex_control_t;
             o_MEMControl    : out mem_control_t;
@@ -386,20 +391,12 @@ begin
 
     --------------- ID STAGE ---------------------------
 
-    i2_adder_n: adder_n
-	port map(
-        i_D0        => id_PCInc,
-       	i_D1        => (18 to 31 => id_Inst(15)) & (id_Inst(15 downto 0) & "00"),
-        i_C         => '0',
-        o_S         => s_PCBranchNext,
-       	o_C         => open
-    );
-
     s_PCJumpNext <= id_PCInc(31 downto 28) & id_Inst(25 downto 0) & "00";
 
     iControl: control
     port map(
         i_Opc          => id_Inst(31 downto 26),
+        ex_Opc         => ex_Inst(31 downto 26),
         i_Funct        => id_Inst(5 downto 0),
         i_Zero         => s_Zero,
         o_ctrl_Q       => s_Control
@@ -432,8 +429,6 @@ begin
         o_R2    => id_Reg2Out
     );
 
-    s_Zero <= '1' when (id_Reg1Out = id_Reg2Out) else '0';
-
     id_Shamt <= ((0 to 26 => '0') & id_Inst(10 downto 6));
     id_SignExt <= (0 to 15 => id_Inst(15)) & id_Inst(15 downto 0);
     id_ZeroExt <= x"0000" & id_Inst(15 downto 0);
@@ -450,6 +445,7 @@ begin
         i_SignExt       => id_SignExt,
         i_ZeroExt       => id_ZeroExt,
         i_PCInc         => id_PCInc, 
+        i_Inst          => id_Inst,
         i_RegWrAddr     => id_RegWrAddr,      
         i_EXControl     => id_EXControl,     
         i_MEMControl    => id_MEMControl,
@@ -460,6 +456,7 @@ begin
         o_SignExt       => ex_SignExt,
         o_ZeroExt       => ex_ZeroExt,
         o_PCInc         => ex_PCInc, 
+        o_Inst          => ex_Inst,
         o_RegWrAddr     => ex_RegWrAddr,      
         o_EXControl     => ex_EXControl,     
         o_MEMControl    => ex_MEMControl,
@@ -467,6 +464,15 @@ begin
     ); 
 
     --------------- EX STAGE -----------------------------
+
+    i2_adder_n: adder_n
+	port map(
+        i_D0        => ex_PCInc,
+       	i_D1        => (18 to 31 => ex_Inst(15)) & (ex_Inst(15 downto 0) & "00"),
+        i_C         => '0',
+        o_S         => s_PCBranchNext,
+       	o_C         => open
+    );
 
     with ex_EXControl.alu_input1_sel select
         s_ALUInput1 <= ex_Reg1Out when '0',
@@ -484,6 +490,7 @@ begin
         i_D1        => s_ALUInput2,
         i_C         => ex_EXControl.alu_control,
         o_OVFL      => s_Ovfl,
+        o_Z         => s_Zero,
         o_Q         => ex_ALUOut
     );
 
