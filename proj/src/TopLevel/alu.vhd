@@ -82,8 +82,7 @@ begin
     o_OVFL <= s_0VFL_Add_Sub when (i_C.allow_ovfl = '1') else 
         '0';
 
-    o_Z <= '1' when s_Add_Sub = x"00000000" else
-        '0';
+    o_Z <= '1' when i_D0 = i_D1 else '0';
     
     with i_C.alu_select select
         o_Q <= s_Add_Sub when "0000",

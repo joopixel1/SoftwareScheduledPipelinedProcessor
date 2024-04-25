@@ -40,8 +40,8 @@ begin
                        or (i_Opc = "001000" or i_Opc = "001001")                                             -- addi, addiu
                        or (i_Opc = "101011" or i_Opc = "100011" or i_Opc = "100000" or i_Opc = "100001" or i_Opc = "100100" or i_Opc = "100101")) else -- sw, lw, lb, lh, lbu, lhu
 
-                          "0001" when ((i_Opc = "000000" and (i_Funct = "100010" or i_Funct = "100011")) -- sub, subu
-                       or (i_Opc = "000100" or i_Opc = "000101")) else                                     -- bne, beq
+                          "0001" when ((i_Opc = "000000" and (i_Funct = "100010" or i_Funct = "100011"))) else -- sub, subu
+                       -- or (i_Opc = "000100" or i_Opc = "000101")) else                                     -- bne, beq
 
                           "0010" when ((i_Opc = "000000" and i_Funct = "100100")             -- and
                        or (i_Opc = "001100")) else                                                -- andi
