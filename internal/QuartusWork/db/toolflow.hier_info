@@ -1982,555 +1982,6 @@ i_D => s_Q.DATAIN
 o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|MIPS_Processor|adder_n:i2_adder_n
-i_D0[0] => adder:i0_adder_1.i_D0
-i_D0[1] => adder:s0_adder_1:1:i1_adder_1.i_D0
-i_D0[2] => adder:s0_adder_1:2:i1_adder_1.i_D0
-i_D0[3] => adder:s0_adder_1:3:i1_adder_1.i_D0
-i_D0[4] => adder:s0_adder_1:4:i1_adder_1.i_D0
-i_D0[5] => adder:s0_adder_1:5:i1_adder_1.i_D0
-i_D0[6] => adder:s0_adder_1:6:i1_adder_1.i_D0
-i_D0[7] => adder:s0_adder_1:7:i1_adder_1.i_D0
-i_D0[8] => adder:s0_adder_1:8:i1_adder_1.i_D0
-i_D0[9] => adder:s0_adder_1:9:i1_adder_1.i_D0
-i_D0[10] => adder:s0_adder_1:10:i1_adder_1.i_D0
-i_D0[11] => adder:s0_adder_1:11:i1_adder_1.i_D0
-i_D0[12] => adder:s0_adder_1:12:i1_adder_1.i_D0
-i_D0[13] => adder:s0_adder_1:13:i1_adder_1.i_D0
-i_D0[14] => adder:s0_adder_1:14:i1_adder_1.i_D0
-i_D0[15] => adder:s0_adder_1:15:i1_adder_1.i_D0
-i_D0[16] => adder:s0_adder_1:16:i1_adder_1.i_D0
-i_D0[17] => adder:s0_adder_1:17:i1_adder_1.i_D0
-i_D0[18] => adder:s0_adder_1:18:i1_adder_1.i_D0
-i_D0[19] => adder:s0_adder_1:19:i1_adder_1.i_D0
-i_D0[20] => adder:s0_adder_1:20:i1_adder_1.i_D0
-i_D0[21] => adder:s0_adder_1:21:i1_adder_1.i_D0
-i_D0[22] => adder:s0_adder_1:22:i1_adder_1.i_D0
-i_D0[23] => adder:s0_adder_1:23:i1_adder_1.i_D0
-i_D0[24] => adder:s0_adder_1:24:i1_adder_1.i_D0
-i_D0[25] => adder:s0_adder_1:25:i1_adder_1.i_D0
-i_D0[26] => adder:s0_adder_1:26:i1_adder_1.i_D0
-i_D0[27] => adder:s0_adder_1:27:i1_adder_1.i_D0
-i_D0[28] => adder:s0_adder_1:28:i1_adder_1.i_D0
-i_D0[29] => adder:s0_adder_1:29:i1_adder_1.i_D0
-i_D0[30] => adder:s0_adder_1:30:i1_adder_1.i_D0
-i_D0[31] => adder:i2_adder_1.i_D0
-i_D1[0] => adder:i0_adder_1.i_D1
-i_D1[1] => adder:s0_adder_1:1:i1_adder_1.i_D1
-i_D1[2] => adder:s0_adder_1:2:i1_adder_1.i_D1
-i_D1[3] => adder:s0_adder_1:3:i1_adder_1.i_D1
-i_D1[4] => adder:s0_adder_1:4:i1_adder_1.i_D1
-i_D1[5] => adder:s0_adder_1:5:i1_adder_1.i_D1
-i_D1[6] => adder:s0_adder_1:6:i1_adder_1.i_D1
-i_D1[7] => adder:s0_adder_1:7:i1_adder_1.i_D1
-i_D1[8] => adder:s0_adder_1:8:i1_adder_1.i_D1
-i_D1[9] => adder:s0_adder_1:9:i1_adder_1.i_D1
-i_D1[10] => adder:s0_adder_1:10:i1_adder_1.i_D1
-i_D1[11] => adder:s0_adder_1:11:i1_adder_1.i_D1
-i_D1[12] => adder:s0_adder_1:12:i1_adder_1.i_D1
-i_D1[13] => adder:s0_adder_1:13:i1_adder_1.i_D1
-i_D1[14] => adder:s0_adder_1:14:i1_adder_1.i_D1
-i_D1[15] => adder:s0_adder_1:15:i1_adder_1.i_D1
-i_D1[16] => adder:s0_adder_1:16:i1_adder_1.i_D1
-i_D1[17] => adder:s0_adder_1:17:i1_adder_1.i_D1
-i_D1[18] => adder:s0_adder_1:18:i1_adder_1.i_D1
-i_D1[19] => adder:s0_adder_1:19:i1_adder_1.i_D1
-i_D1[20] => adder:s0_adder_1:20:i1_adder_1.i_D1
-i_D1[21] => adder:s0_adder_1:21:i1_adder_1.i_D1
-i_D1[22] => adder:s0_adder_1:22:i1_adder_1.i_D1
-i_D1[23] => adder:s0_adder_1:23:i1_adder_1.i_D1
-i_D1[24] => adder:s0_adder_1:24:i1_adder_1.i_D1
-i_D1[25] => adder:s0_adder_1:25:i1_adder_1.i_D1
-i_D1[26] => adder:s0_adder_1:26:i1_adder_1.i_D1
-i_D1[27] => adder:s0_adder_1:27:i1_adder_1.i_D1
-i_D1[28] => adder:s0_adder_1:28:i1_adder_1.i_D1
-i_D1[29] => adder:s0_adder_1:29:i1_adder_1.i_D1
-i_D1[30] => adder:s0_adder_1:30:i1_adder_1.i_D1
-i_D1[31] => adder:i2_adder_1.i_D1
-i_C => adder:i0_adder_1.i_C
-o_S[0] <= adder:i0_adder_1.o_S
-o_S[1] <= adder:s0_adder_1:1:i1_adder_1.o_S
-o_S[2] <= adder:s0_adder_1:2:i1_adder_1.o_S
-o_S[3] <= adder:s0_adder_1:3:i1_adder_1.o_S
-o_S[4] <= adder:s0_adder_1:4:i1_adder_1.o_S
-o_S[5] <= adder:s0_adder_1:5:i1_adder_1.o_S
-o_S[6] <= adder:s0_adder_1:6:i1_adder_1.o_S
-o_S[7] <= adder:s0_adder_1:7:i1_adder_1.o_S
-o_S[8] <= adder:s0_adder_1:8:i1_adder_1.o_S
-o_S[9] <= adder:s0_adder_1:9:i1_adder_1.o_S
-o_S[10] <= adder:s0_adder_1:10:i1_adder_1.o_S
-o_S[11] <= adder:s0_adder_1:11:i1_adder_1.o_S
-o_S[12] <= adder:s0_adder_1:12:i1_adder_1.o_S
-o_S[13] <= adder:s0_adder_1:13:i1_adder_1.o_S
-o_S[14] <= adder:s0_adder_1:14:i1_adder_1.o_S
-o_S[15] <= adder:s0_adder_1:15:i1_adder_1.o_S
-o_S[16] <= adder:s0_adder_1:16:i1_adder_1.o_S
-o_S[17] <= adder:s0_adder_1:17:i1_adder_1.o_S
-o_S[18] <= adder:s0_adder_1:18:i1_adder_1.o_S
-o_S[19] <= adder:s0_adder_1:19:i1_adder_1.o_S
-o_S[20] <= adder:s0_adder_1:20:i1_adder_1.o_S
-o_S[21] <= adder:s0_adder_1:21:i1_adder_1.o_S
-o_S[22] <= adder:s0_adder_1:22:i1_adder_1.o_S
-o_S[23] <= adder:s0_adder_1:23:i1_adder_1.o_S
-o_S[24] <= adder:s0_adder_1:24:i1_adder_1.o_S
-o_S[25] <= adder:s0_adder_1:25:i1_adder_1.o_S
-o_S[26] <= adder:s0_adder_1:26:i1_adder_1.o_S
-o_S[27] <= adder:s0_adder_1:27:i1_adder_1.o_S
-o_S[28] <= adder:s0_adder_1:28:i1_adder_1.o_S
-o_S[29] <= adder:s0_adder_1:29:i1_adder_1.o_S
-o_S[30] <= adder:s0_adder_1:30:i1_adder_1.o_S
-o_S[31] <= adder:i2_adder_1.o_S
-o_C <= adder:i2_adder_1.o_C
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:i0_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:30:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:29:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:28:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:27:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:26:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:25:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:24:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:23:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:22:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:21:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:20:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:19:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:18:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:17:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:16:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:15:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:14:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:13:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:12:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:11:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:10:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:9:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:8:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:7:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:6:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:5:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:4:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:3:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:2:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:1:i1_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
-|MIPS_Processor|adder_n:i2_adder_n|adder:i2_adder_1
-i_D0 => o_C.IN0
-i_D0 => o_C.IN0
-i_D0 => o_S.IN0
-i_D1 => o_C.IN1
-i_D1 => o_C.IN0
-i_D1 => o_S.IN1
-i_C => o_C.IN1
-i_C => o_C.IN1
-i_C => o_S.IN1
-o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
-o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
-
-
 |MIPS_Processor|control:iControl
 i_Opc[0] => Equal0.IN5
 i_Opc[0] => Equal3.IN4
@@ -2646,6 +2097,18 @@ i_Opc[5] => Equal30.IN3
 i_Opc[5] => Equal31.IN0
 i_Opc[5] => Equal32.IN0
 i_Opc[5] => Equal34.IN0
+ex_Opc[0] => Equal35.IN5
+ex_Opc[0] => Equal36.IN4
+ex_Opc[1] => Equal35.IN3
+ex_Opc[1] => Equal36.IN3
+ex_Opc[2] => Equal35.IN4
+ex_Opc[2] => Equal36.IN5
+ex_Opc[3] => Equal35.IN2
+ex_Opc[3] => Equal36.IN2
+ex_Opc[4] => Equal35.IN1
+ex_Opc[4] => Equal36.IN1
+ex_Opc[5] => Equal35.IN0
+ex_Opc[5] => Equal36.IN0
 i_Funct[0] => Equal1.IN4
 i_Funct[0] => Equal2.IN3
 i_Funct[0] => Equal4.IN5
@@ -11706,6 +11169,7 @@ i_CLK => n_dffg:ZeroExtend_input.i_CLK
 i_CLK => n_dffg:SignExtend_input.i_CLK
 i_CLK => n_dffg:ShamOut_input.i_CLK
 i_CLK => n_dffg:PCIncOut_input.i_CLK
+i_CLK => n_dffg:InstOut_input.i_CLK
 i_CLK => n_dffg:RegWrAddrOut_input.i_CLK
 i_CLK => ex_dffg:EXControl_FF.i_CLK
 i_CLK => mem_dffg:MEMControl_FF.i_CLK
@@ -11716,6 +11180,7 @@ i_RST => n_dffg:ZeroExtend_input.i_RST
 i_RST => n_dffg:SignExtend_input.i_RST
 i_RST => n_dffg:ShamOut_input.i_RST
 i_RST => n_dffg:PCIncOut_input.i_RST
+i_RST => n_dffg:InstOut_input.i_RST
 i_RST => n_dffg:RegWrAddrOut_input.i_RST
 i_RST => ex_dffg:EXControl_FF.i_RST
 i_RST => mem_dffg:MEMControl_FF.i_RST
@@ -11912,6 +11377,38 @@ i_PCInc[28] => n_dffg:PCIncOut_input.i_D[28]
 i_PCInc[29] => n_dffg:PCIncOut_input.i_D[29]
 i_PCInc[30] => n_dffg:PCIncOut_input.i_D[30]
 i_PCInc[31] => n_dffg:PCIncOut_input.i_D[31]
+i_Inst[0] => n_dffg:InstOut_input.i_D[0]
+i_Inst[1] => n_dffg:InstOut_input.i_D[1]
+i_Inst[2] => n_dffg:InstOut_input.i_D[2]
+i_Inst[3] => n_dffg:InstOut_input.i_D[3]
+i_Inst[4] => n_dffg:InstOut_input.i_D[4]
+i_Inst[5] => n_dffg:InstOut_input.i_D[5]
+i_Inst[6] => n_dffg:InstOut_input.i_D[6]
+i_Inst[7] => n_dffg:InstOut_input.i_D[7]
+i_Inst[8] => n_dffg:InstOut_input.i_D[8]
+i_Inst[9] => n_dffg:InstOut_input.i_D[9]
+i_Inst[10] => n_dffg:InstOut_input.i_D[10]
+i_Inst[11] => n_dffg:InstOut_input.i_D[11]
+i_Inst[12] => n_dffg:InstOut_input.i_D[12]
+i_Inst[13] => n_dffg:InstOut_input.i_D[13]
+i_Inst[14] => n_dffg:InstOut_input.i_D[14]
+i_Inst[15] => n_dffg:InstOut_input.i_D[15]
+i_Inst[16] => n_dffg:InstOut_input.i_D[16]
+i_Inst[17] => n_dffg:InstOut_input.i_D[17]
+i_Inst[18] => n_dffg:InstOut_input.i_D[18]
+i_Inst[19] => n_dffg:InstOut_input.i_D[19]
+i_Inst[20] => n_dffg:InstOut_input.i_D[20]
+i_Inst[21] => n_dffg:InstOut_input.i_D[21]
+i_Inst[22] => n_dffg:InstOut_input.i_D[22]
+i_Inst[23] => n_dffg:InstOut_input.i_D[23]
+i_Inst[24] => n_dffg:InstOut_input.i_D[24]
+i_Inst[25] => n_dffg:InstOut_input.i_D[25]
+i_Inst[26] => n_dffg:InstOut_input.i_D[26]
+i_Inst[27] => n_dffg:InstOut_input.i_D[27]
+i_Inst[28] => n_dffg:InstOut_input.i_D[28]
+i_Inst[29] => n_dffg:InstOut_input.i_D[29]
+i_Inst[30] => n_dffg:InstOut_input.i_D[30]
+i_Inst[31] => n_dffg:InstOut_input.i_D[31]
 i_RegWrAddr[0] => n_dffg:RegWrAddrOut_input.i_D[0]
 i_RegWrAddr[1] => n_dffg:RegWrAddrOut_input.i_D[1]
 i_RegWrAddr[2] => n_dffg:RegWrAddrOut_input.i_D[2]
@@ -12124,6 +11621,38 @@ o_PCInc[28] <= n_dffg:PCIncOut_input.o_Q[28]
 o_PCInc[29] <= n_dffg:PCIncOut_input.o_Q[29]
 o_PCInc[30] <= n_dffg:PCIncOut_input.o_Q[30]
 o_PCInc[31] <= n_dffg:PCIncOut_input.o_Q[31]
+o_Inst[0] <= n_dffg:InstOut_input.o_Q[0]
+o_Inst[1] <= n_dffg:InstOut_input.o_Q[1]
+o_Inst[2] <= n_dffg:InstOut_input.o_Q[2]
+o_Inst[3] <= n_dffg:InstOut_input.o_Q[3]
+o_Inst[4] <= n_dffg:InstOut_input.o_Q[4]
+o_Inst[5] <= n_dffg:InstOut_input.o_Q[5]
+o_Inst[6] <= n_dffg:InstOut_input.o_Q[6]
+o_Inst[7] <= n_dffg:InstOut_input.o_Q[7]
+o_Inst[8] <= n_dffg:InstOut_input.o_Q[8]
+o_Inst[9] <= n_dffg:InstOut_input.o_Q[9]
+o_Inst[10] <= n_dffg:InstOut_input.o_Q[10]
+o_Inst[11] <= n_dffg:InstOut_input.o_Q[11]
+o_Inst[12] <= n_dffg:InstOut_input.o_Q[12]
+o_Inst[13] <= n_dffg:InstOut_input.o_Q[13]
+o_Inst[14] <= n_dffg:InstOut_input.o_Q[14]
+o_Inst[15] <= n_dffg:InstOut_input.o_Q[15]
+o_Inst[16] <= n_dffg:InstOut_input.o_Q[16]
+o_Inst[17] <= n_dffg:InstOut_input.o_Q[17]
+o_Inst[18] <= n_dffg:InstOut_input.o_Q[18]
+o_Inst[19] <= n_dffg:InstOut_input.o_Q[19]
+o_Inst[20] <= n_dffg:InstOut_input.o_Q[20]
+o_Inst[21] <= n_dffg:InstOut_input.o_Q[21]
+o_Inst[22] <= n_dffg:InstOut_input.o_Q[22]
+o_Inst[23] <= n_dffg:InstOut_input.o_Q[23]
+o_Inst[24] <= n_dffg:InstOut_input.o_Q[24]
+o_Inst[25] <= n_dffg:InstOut_input.o_Q[25]
+o_Inst[26] <= n_dffg:InstOut_input.o_Q[26]
+o_Inst[27] <= n_dffg:InstOut_input.o_Q[27]
+o_Inst[28] <= n_dffg:InstOut_input.o_Q[28]
+o_Inst[29] <= n_dffg:InstOut_input.o_Q[29]
+o_Inst[30] <= n_dffg:InstOut_input.o_Q[30]
+o_Inst[31] <= n_dffg:InstOut_input.o_Q[31]
 o_RegWrAddr[0] <= n_dffg:RegWrAddrOut_input.o_Q[0]
 o_RegWrAddr[1] <= n_dffg:RegWrAddrOut_input.o_Q[1]
 o_RegWrAddr[2] <= n_dffg:RegWrAddrOut_input.o_Q[2]
@@ -14660,6 +14189,425 @@ i_D => s_Q.DATAIN
 o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
 
 
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input
+i_CLK => dffg:dffg_instances:31:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:30:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:29:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:28:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:27:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:26:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:25:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:24:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:23:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:22:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:21:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:20:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:19:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:18:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:17:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:16:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:15:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:14:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:13:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:12:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:11:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:10:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:9:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:8:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:7:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:6:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:5:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:4:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:3:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:2:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:1:dffg_instance.i_CLK
+i_CLK => dffg:dffg_instances:0:dffg_instance.i_CLK
+i_RST => dffg:dffg_instances:31:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:30:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:29:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:28:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:27:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:26:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:25:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:24:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:23:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:22:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:21:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:20:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:19:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:18:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:17:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:16:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:15:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:14:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:13:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:12:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:11:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:10:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:9:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:8:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:7:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:6:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:5:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:4:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:3:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:2:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:1:dffg_instance.i_RST
+i_RST => dffg:dffg_instances:0:dffg_instance.i_RST
+i_WE => dffg:dffg_instances:31:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:30:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:29:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:28:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:27:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:26:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:25:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:24:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:23:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:22:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:21:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:20:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:19:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:18:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:17:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:16:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:15:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:14:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:13:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:12:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:11:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:10:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:9:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:8:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:7:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:6:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:5:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:4:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:3:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:2:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:1:dffg_instance.i_WE
+i_WE => dffg:dffg_instances:0:dffg_instance.i_WE
+i_D[0] => dffg:dffg_instances:0:dffg_instance.i_D
+i_D[1] => dffg:dffg_instances:1:dffg_instance.i_D
+i_D[2] => dffg:dffg_instances:2:dffg_instance.i_D
+i_D[3] => dffg:dffg_instances:3:dffg_instance.i_D
+i_D[4] => dffg:dffg_instances:4:dffg_instance.i_D
+i_D[5] => dffg:dffg_instances:5:dffg_instance.i_D
+i_D[6] => dffg:dffg_instances:6:dffg_instance.i_D
+i_D[7] => dffg:dffg_instances:7:dffg_instance.i_D
+i_D[8] => dffg:dffg_instances:8:dffg_instance.i_D
+i_D[9] => dffg:dffg_instances:9:dffg_instance.i_D
+i_D[10] => dffg:dffg_instances:10:dffg_instance.i_D
+i_D[11] => dffg:dffg_instances:11:dffg_instance.i_D
+i_D[12] => dffg:dffg_instances:12:dffg_instance.i_D
+i_D[13] => dffg:dffg_instances:13:dffg_instance.i_D
+i_D[14] => dffg:dffg_instances:14:dffg_instance.i_D
+i_D[15] => dffg:dffg_instances:15:dffg_instance.i_D
+i_D[16] => dffg:dffg_instances:16:dffg_instance.i_D
+i_D[17] => dffg:dffg_instances:17:dffg_instance.i_D
+i_D[18] => dffg:dffg_instances:18:dffg_instance.i_D
+i_D[19] => dffg:dffg_instances:19:dffg_instance.i_D
+i_D[20] => dffg:dffg_instances:20:dffg_instance.i_D
+i_D[21] => dffg:dffg_instances:21:dffg_instance.i_D
+i_D[22] => dffg:dffg_instances:22:dffg_instance.i_D
+i_D[23] => dffg:dffg_instances:23:dffg_instance.i_D
+i_D[24] => dffg:dffg_instances:24:dffg_instance.i_D
+i_D[25] => dffg:dffg_instances:25:dffg_instance.i_D
+i_D[26] => dffg:dffg_instances:26:dffg_instance.i_D
+i_D[27] => dffg:dffg_instances:27:dffg_instance.i_D
+i_D[28] => dffg:dffg_instances:28:dffg_instance.i_D
+i_D[29] => dffg:dffg_instances:29:dffg_instance.i_D
+i_D[30] => dffg:dffg_instances:30:dffg_instance.i_D
+i_D[31] => dffg:dffg_instances:31:dffg_instance.i_D
+o_Q[0] <= dffg:dffg_instances:0:dffg_instance.o_Q
+o_Q[1] <= dffg:dffg_instances:1:dffg_instance.o_Q
+o_Q[2] <= dffg:dffg_instances:2:dffg_instance.o_Q
+o_Q[3] <= dffg:dffg_instances:3:dffg_instance.o_Q
+o_Q[4] <= dffg:dffg_instances:4:dffg_instance.o_Q
+o_Q[5] <= dffg:dffg_instances:5:dffg_instance.o_Q
+o_Q[6] <= dffg:dffg_instances:6:dffg_instance.o_Q
+o_Q[7] <= dffg:dffg_instances:7:dffg_instance.o_Q
+o_Q[8] <= dffg:dffg_instances:8:dffg_instance.o_Q
+o_Q[9] <= dffg:dffg_instances:9:dffg_instance.o_Q
+o_Q[10] <= dffg:dffg_instances:10:dffg_instance.o_Q
+o_Q[11] <= dffg:dffg_instances:11:dffg_instance.o_Q
+o_Q[12] <= dffg:dffg_instances:12:dffg_instance.o_Q
+o_Q[13] <= dffg:dffg_instances:13:dffg_instance.o_Q
+o_Q[14] <= dffg:dffg_instances:14:dffg_instance.o_Q
+o_Q[15] <= dffg:dffg_instances:15:dffg_instance.o_Q
+o_Q[16] <= dffg:dffg_instances:16:dffg_instance.o_Q
+o_Q[17] <= dffg:dffg_instances:17:dffg_instance.o_Q
+o_Q[18] <= dffg:dffg_instances:18:dffg_instance.o_Q
+o_Q[19] <= dffg:dffg_instances:19:dffg_instance.o_Q
+o_Q[20] <= dffg:dffg_instances:20:dffg_instance.o_Q
+o_Q[21] <= dffg:dffg_instances:21:dffg_instance.o_Q
+o_Q[22] <= dffg:dffg_instances:22:dffg_instance.o_Q
+o_Q[23] <= dffg:dffg_instances:23:dffg_instance.o_Q
+o_Q[24] <= dffg:dffg_instances:24:dffg_instance.o_Q
+o_Q[25] <= dffg:dffg_instances:25:dffg_instance.o_Q
+o_Q[26] <= dffg:dffg_instances:26:dffg_instance.o_Q
+o_Q[27] <= dffg:dffg_instances:27:dffg_instance.o_Q
+o_Q[28] <= dffg:dffg_instances:28:dffg_instance.o_Q
+o_Q[29] <= dffg:dffg_instances:29:dffg_instance.o_Q
+o_Q[30] <= dffg:dffg_instances:30:dffg_instance.o_Q
+o_Q[31] <= dffg:dffg_instances:31:dffg_instance.o_Q
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:31:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:30:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:29:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:28:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:27:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:26:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:25:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:24:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:23:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:22:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:21:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:20:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:19:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:18:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:17:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:16:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:15:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:14:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:13:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:12:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:11:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:10:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:9:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:8:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:7:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:6:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:5:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:4:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:3:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:2:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:1:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|ID_EX:IID_EX|n_dffg:InstOut_input|dffg:\dffg_instances:0:dffg_instance
+i_CLK => s_Q.CLK
+i_RST => s_Q.ACLR
+i_WE => s_Q.ENA
+i_D => s_Q.DATAIN
+o_Q <= s_Q.DB_MAX_OUTPUT_PORT_TYPE
+
+
 |MIPS_Processor|ID_EX:IID_EX|n_dffg:RegWrAddrOut_input
 i_CLK => dffg:dffg_instances:4:dffg_instance.i_CLK
 i_CLK => dffg:dffg_instances:3:dffg_instance.i_CLK
@@ -14810,6 +14758,555 @@ o_Q.reg_wr_sel[0] <= s_Q.reg_wr_sel[0].DB_MAX_OUTPUT_PORT_TYPE
 o_Q.reg_wr_sel[1] <= s_Q.reg_wr_sel[1].DB_MAX_OUTPUT_PORT_TYPE
 o_Q.reg_wr <= s_Q.reg_wr.DB_MAX_OUTPUT_PORT_TYPE
 o_Q.halt <= s_Q.halt.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n
+i_D0[0] => adder:i0_adder_1.i_D0
+i_D0[1] => adder:s0_adder_1:1:i1_adder_1.i_D0
+i_D0[2] => adder:s0_adder_1:2:i1_adder_1.i_D0
+i_D0[3] => adder:s0_adder_1:3:i1_adder_1.i_D0
+i_D0[4] => adder:s0_adder_1:4:i1_adder_1.i_D0
+i_D0[5] => adder:s0_adder_1:5:i1_adder_1.i_D0
+i_D0[6] => adder:s0_adder_1:6:i1_adder_1.i_D0
+i_D0[7] => adder:s0_adder_1:7:i1_adder_1.i_D0
+i_D0[8] => adder:s0_adder_1:8:i1_adder_1.i_D0
+i_D0[9] => adder:s0_adder_1:9:i1_adder_1.i_D0
+i_D0[10] => adder:s0_adder_1:10:i1_adder_1.i_D0
+i_D0[11] => adder:s0_adder_1:11:i1_adder_1.i_D0
+i_D0[12] => adder:s0_adder_1:12:i1_adder_1.i_D0
+i_D0[13] => adder:s0_adder_1:13:i1_adder_1.i_D0
+i_D0[14] => adder:s0_adder_1:14:i1_adder_1.i_D0
+i_D0[15] => adder:s0_adder_1:15:i1_adder_1.i_D0
+i_D0[16] => adder:s0_adder_1:16:i1_adder_1.i_D0
+i_D0[17] => adder:s0_adder_1:17:i1_adder_1.i_D0
+i_D0[18] => adder:s0_adder_1:18:i1_adder_1.i_D0
+i_D0[19] => adder:s0_adder_1:19:i1_adder_1.i_D0
+i_D0[20] => adder:s0_adder_1:20:i1_adder_1.i_D0
+i_D0[21] => adder:s0_adder_1:21:i1_adder_1.i_D0
+i_D0[22] => adder:s0_adder_1:22:i1_adder_1.i_D0
+i_D0[23] => adder:s0_adder_1:23:i1_adder_1.i_D0
+i_D0[24] => adder:s0_adder_1:24:i1_adder_1.i_D0
+i_D0[25] => adder:s0_adder_1:25:i1_adder_1.i_D0
+i_D0[26] => adder:s0_adder_1:26:i1_adder_1.i_D0
+i_D0[27] => adder:s0_adder_1:27:i1_adder_1.i_D0
+i_D0[28] => adder:s0_adder_1:28:i1_adder_1.i_D0
+i_D0[29] => adder:s0_adder_1:29:i1_adder_1.i_D0
+i_D0[30] => adder:s0_adder_1:30:i1_adder_1.i_D0
+i_D0[31] => adder:i2_adder_1.i_D0
+i_D1[0] => adder:i0_adder_1.i_D1
+i_D1[1] => adder:s0_adder_1:1:i1_adder_1.i_D1
+i_D1[2] => adder:s0_adder_1:2:i1_adder_1.i_D1
+i_D1[3] => adder:s0_adder_1:3:i1_adder_1.i_D1
+i_D1[4] => adder:s0_adder_1:4:i1_adder_1.i_D1
+i_D1[5] => adder:s0_adder_1:5:i1_adder_1.i_D1
+i_D1[6] => adder:s0_adder_1:6:i1_adder_1.i_D1
+i_D1[7] => adder:s0_adder_1:7:i1_adder_1.i_D1
+i_D1[8] => adder:s0_adder_1:8:i1_adder_1.i_D1
+i_D1[9] => adder:s0_adder_1:9:i1_adder_1.i_D1
+i_D1[10] => adder:s0_adder_1:10:i1_adder_1.i_D1
+i_D1[11] => adder:s0_adder_1:11:i1_adder_1.i_D1
+i_D1[12] => adder:s0_adder_1:12:i1_adder_1.i_D1
+i_D1[13] => adder:s0_adder_1:13:i1_adder_1.i_D1
+i_D1[14] => adder:s0_adder_1:14:i1_adder_1.i_D1
+i_D1[15] => adder:s0_adder_1:15:i1_adder_1.i_D1
+i_D1[16] => adder:s0_adder_1:16:i1_adder_1.i_D1
+i_D1[17] => adder:s0_adder_1:17:i1_adder_1.i_D1
+i_D1[18] => adder:s0_adder_1:18:i1_adder_1.i_D1
+i_D1[19] => adder:s0_adder_1:19:i1_adder_1.i_D1
+i_D1[20] => adder:s0_adder_1:20:i1_adder_1.i_D1
+i_D1[21] => adder:s0_adder_1:21:i1_adder_1.i_D1
+i_D1[22] => adder:s0_adder_1:22:i1_adder_1.i_D1
+i_D1[23] => adder:s0_adder_1:23:i1_adder_1.i_D1
+i_D1[24] => adder:s0_adder_1:24:i1_adder_1.i_D1
+i_D1[25] => adder:s0_adder_1:25:i1_adder_1.i_D1
+i_D1[26] => adder:s0_adder_1:26:i1_adder_1.i_D1
+i_D1[27] => adder:s0_adder_1:27:i1_adder_1.i_D1
+i_D1[28] => adder:s0_adder_1:28:i1_adder_1.i_D1
+i_D1[29] => adder:s0_adder_1:29:i1_adder_1.i_D1
+i_D1[30] => adder:s0_adder_1:30:i1_adder_1.i_D1
+i_D1[31] => adder:i2_adder_1.i_D1
+i_C => adder:i0_adder_1.i_C
+o_S[0] <= adder:i0_adder_1.o_S
+o_S[1] <= adder:s0_adder_1:1:i1_adder_1.o_S
+o_S[2] <= adder:s0_adder_1:2:i1_adder_1.o_S
+o_S[3] <= adder:s0_adder_1:3:i1_adder_1.o_S
+o_S[4] <= adder:s0_adder_1:4:i1_adder_1.o_S
+o_S[5] <= adder:s0_adder_1:5:i1_adder_1.o_S
+o_S[6] <= adder:s0_adder_1:6:i1_adder_1.o_S
+o_S[7] <= adder:s0_adder_1:7:i1_adder_1.o_S
+o_S[8] <= adder:s0_adder_1:8:i1_adder_1.o_S
+o_S[9] <= adder:s0_adder_1:9:i1_adder_1.o_S
+o_S[10] <= adder:s0_adder_1:10:i1_adder_1.o_S
+o_S[11] <= adder:s0_adder_1:11:i1_adder_1.o_S
+o_S[12] <= adder:s0_adder_1:12:i1_adder_1.o_S
+o_S[13] <= adder:s0_adder_1:13:i1_adder_1.o_S
+o_S[14] <= adder:s0_adder_1:14:i1_adder_1.o_S
+o_S[15] <= adder:s0_adder_1:15:i1_adder_1.o_S
+o_S[16] <= adder:s0_adder_1:16:i1_adder_1.o_S
+o_S[17] <= adder:s0_adder_1:17:i1_adder_1.o_S
+o_S[18] <= adder:s0_adder_1:18:i1_adder_1.o_S
+o_S[19] <= adder:s0_adder_1:19:i1_adder_1.o_S
+o_S[20] <= adder:s0_adder_1:20:i1_adder_1.o_S
+o_S[21] <= adder:s0_adder_1:21:i1_adder_1.o_S
+o_S[22] <= adder:s0_adder_1:22:i1_adder_1.o_S
+o_S[23] <= adder:s0_adder_1:23:i1_adder_1.o_S
+o_S[24] <= adder:s0_adder_1:24:i1_adder_1.o_S
+o_S[25] <= adder:s0_adder_1:25:i1_adder_1.o_S
+o_S[26] <= adder:s0_adder_1:26:i1_adder_1.o_S
+o_S[27] <= adder:s0_adder_1:27:i1_adder_1.o_S
+o_S[28] <= adder:s0_adder_1:28:i1_adder_1.o_S
+o_S[29] <= adder:s0_adder_1:29:i1_adder_1.o_S
+o_S[30] <= adder:s0_adder_1:30:i1_adder_1.o_S
+o_S[31] <= adder:i2_adder_1.o_S
+o_C <= adder:i2_adder_1.o_C
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:i0_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:30:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:29:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:28:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:27:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:26:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:25:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:24:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:23:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:22:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:21:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:20:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:19:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:18:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:17:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:16:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:15:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:14:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:13:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:12:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:11:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:10:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:9:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:8:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:7:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:6:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:5:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:4:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:3:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:2:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:\s0_adder_1:1:i1_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MIPS_Processor|adder_n:i2_adder_n|adder:i2_adder_1
+i_D0 => o_C.IN0
+i_D0 => o_C.IN0
+i_D0 => o_S.IN0
+i_D1 => o_C.IN1
+i_D1 => o_C.IN0
+i_D1 => o_S.IN1
+i_C => o_C.IN1
+i_C => o_C.IN1
+i_C => o_S.IN1
+o_S <= o_S.DB_MAX_OUTPUT_PORT_TYPE
+o_C <= o_C.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |MIPS_Processor|alu:ALUObject
@@ -15219,8 +15716,8 @@ i_C.alu_select[0] => Mux29.IN10
 i_C.alu_select[0] => Mux30.IN10
 i_C.alu_select[0] => Mux31.IN9
 i_C.alu_select[0] => add_sub:i_add_sub_n.i_S
-i_C.alu_select[0] => Equal0.IN3
 i_C.alu_select[0] => Equal1.IN3
+i_C.alu_select[0] => Equal2.IN3
 i_C.alu_select[1] => Mux0.IN9
 i_C.alu_select[1] => Mux1.IN9
 i_C.alu_select[1] => Mux2.IN9
@@ -15253,8 +15750,8 @@ i_C.alu_select[1] => Mux28.IN9
 i_C.alu_select[1] => Mux29.IN9
 i_C.alu_select[1] => Mux30.IN9
 i_C.alu_select[1] => Mux31.IN8
-i_C.alu_select[1] => Equal0.IN2
-i_C.alu_select[1] => Equal1.IN1
+i_C.alu_select[1] => Equal1.IN2
+i_C.alu_select[1] => Equal2.IN1
 i_C.alu_select[2] => Mux0.IN8
 i_C.alu_select[2] => Mux1.IN8
 i_C.alu_select[2] => Mux2.IN8
@@ -15287,8 +15784,8 @@ i_C.alu_select[2] => Mux28.IN8
 i_C.alu_select[2] => Mux29.IN8
 i_C.alu_select[2] => Mux30.IN8
 i_C.alu_select[2] => Mux31.IN7
-i_C.alu_select[2] => Equal0.IN1
-i_C.alu_select[2] => Equal1.IN2
+i_C.alu_select[2] => Equal1.IN1
+i_C.alu_select[2] => Equal2.IN2
 i_C.alu_select[3] => Mux0.IN7
 i_C.alu_select[3] => Mux1.IN7
 i_C.alu_select[3] => Mux2.IN7
@@ -15321,10 +15818,11 @@ i_C.alu_select[3] => Mux28.IN7
 i_C.alu_select[3] => Mux29.IN7
 i_C.alu_select[3] => Mux30.IN7
 i_C.alu_select[3] => Mux31.IN6
-i_C.alu_select[3] => Equal0.IN0
 i_C.alu_select[3] => Equal1.IN0
+i_C.alu_select[3] => Equal2.IN0
 i_C.allow_ovfl => o_OVFL.OUTPUTSELECT
 o_OVFL <= o_OVFL.DB_MAX_OUTPUT_PORT_TYPE
+o_Z <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 o_Q[0] <= Mux31.DB_MAX_OUTPUT_PORT_TYPE
 o_Q[1] <= Mux30.DB_MAX_OUTPUT_PORT_TYPE
 o_Q[2] <= Mux29.DB_MAX_OUTPUT_PORT_TYPE
